@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  react:
+    build: .
+    volumes:
+      - .:/react
+    ports:
+      - "5173:5173"
+    working_dir: /react
+    tty: true
+
+
+# docker-compose up --build -d
