@@ -185,3 +185,7 @@ button:focus-visible {
     @apply bg-background text-foreground;
   }
 }
+
+html.dark {
+  color-scheme: dark;
+}
