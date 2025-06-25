@@ -1,0 +1,29 @@
+FROM node:lts
+
+RUN apt-get update -y
+
+WORKDIR /
+
+RUN npm create vite@latest my-react-app -- --template react
+
+WORKDIR /my-react-app
+
+RUN npm install tailwindcss @tailwindcss/vite
+
+npm install -D tailwindcss postcss autoprefixer //good
+
+npx tailwindcss init -p
+
+# RUN npx shadcn@latest init
+
+## COPY package*.json ./
+## 
+## RUN npm install
+## 
+## RUN chown -R $USER:$USER /react
+## 
+## EXPOSE 5173
+## 
+## CMD ["npm", "run", "dev"]
+
+CMD ["sh"]

@@ -12,3 +12,10 @@ services:
 
 
 # docker-compose up --build -d
+
+# npm install -D tailwindcss postcss autoprefixer
+# npm install tailwindcss @tailwindcss/cli
+# npx tailwindcss init -p
+
+# npx shadcn@latest init
+# npx shadcn@latest add card
