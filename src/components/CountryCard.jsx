@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function CountryCard({ country, highlight }) {
     const name = country.name.official;
 
@@ -11,18 +9,18 @@ export default function CountryCard({ country, highlight }) {
             regex.test(part) ? (
                 <mark
                     key={i}
-                    className="bg-yellow-300 dark:bg-yellow-600 text-black dark:text-white px-1 rounded"
+                    className="bg-yellow-300 dark:bg-yellow-500 text-black px-1 rounded"
                 >
                     {part}
                 </mark>
             ) : (
-                part
+                <span key={i}>{part}</span>
             )
         );
     };
 
     return (
-        <div className="w-full bg-white dark:bg-gray-800 dark:text-white rounded-2xl shadow-md overflow-hidden border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow duration-200 flex flex-col">
+        <div className="w-full rounded-2xl shadow-md overflow-hidden border bg-card text-card-foreground border-border hover:shadow-lg transition-shadow duration-200 flex flex-col">
             <img
                 src={country.flags.svg}
                 alt={`Flag of ${name}`}
@@ -32,9 +30,9 @@ export default function CountryCard({ country, highlight }) {
                 <h2 className="text-lg font-semibold truncate" title={name}>
                     {getHighlightedName()}
                 </h2>
-                <p><strong>Capital:</strong> {country.capital?.[0] || 'No capital'}</p>
-                <p><strong>Region:</strong> {country.region}</p>
-                <p><strong>Population:</strong> {country.population.toLocaleString()}</p>
+                <p><span className="font-semibold">Capital:</span> {country.capital?.[0] || 'No capital'}</p>
+                <p><span className="font-semibold">Region:</span> {country.region}</p>
+                <p><span className="font-semibold">Population:</span> {country.population.toLocaleString()}</p>
             </div>
         </div>
     );

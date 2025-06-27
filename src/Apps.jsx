@@ -98,7 +98,7 @@ function CountryList({ search }) {
     );
 }
 
-function RootApp() {
+function Cards() {
     const [darkMode, setDarkMode] = useState(() => {
         return localStorage.getItem('darkMode') === 'true';
     });
@@ -145,4 +145,4 @@ function RootApp() {
     );
 }
 
-export default RootApp;
+export default Cards;
