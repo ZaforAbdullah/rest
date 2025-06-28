@@ -1,13 +1,13 @@
 import React from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import CountriesPage from './pages/CountriesPage';
+import AppRouter from './routes/AppRouter';
 
 const queryClient = new QueryClient();
 
 function App() {
     return (
         <QueryClientProvider client={queryClient}>
-            <CountriesPage />
+            <AppRouter />
         </QueryClientProvider>
     );
 }
