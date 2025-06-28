@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import CountryCard from './CountryCard';
+import { Button } from './ui/button'; // ✅ import your custom Button
 
 const fetchCountries = async () => {
     const response = await axios.get(
@@ -41,6 +42,7 @@ export default function CountryList({ search, region }) {
 
     return (
         <div className="max-w-7xl mx-auto px-4 pb-8">
+            {/* Cards Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {paginatedData.map((country) => (
                     <CountryCard key={country.cca3} country={country} highlight={search} />
@@ -48,24 +50,24 @@ export default function CountryList({ search, region }) {
             </div>
 
             {/* Pagination */}
-            <div className="flex justify-center mt-6 gap-4">
-                <button
+            <div className="flex justify-center mt-6 gap-4 items-center flex-wrap">
+                <Button
                     onClick={() => setPage(prev => Math.max(prev - 1, 1))}
                     disabled={page === 1}
-                    className="px-4 py-2 rounded bg-gray-200 dark:bg-gray-700 disabled:opacity-50"
+                    variant="secondary"
                 >
                     Prev
-                </button>
-                <span className="self-center dark:text-white">
+                </Button>
+                <span className="text-sm font-medium dark:text-white">
                     Page {page} of {totalPages}
                 </span>
-                <button
+                <Button
                     onClick={() => setPage(prev => Math.min(prev + 1, totalPages))}
                     disabled={page === totalPages}
-                    className="px-4 py-2 rounded bg-gray-200 dark:bg-gray-700 disabled:opacity-50"
+                    variant="secondary"
                 >
                     Next
-                </button>
+                </Button>
             </div>
         </div>
     );
