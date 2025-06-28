@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
+import { Button } from '@/components/ui/button';
 
 export default function CountryDetailsPage() {
     const { code } = useParams();
@@ -20,7 +21,9 @@ export default function CountryDetailsPage() {
 
     return (
         <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white px-4 py-6 max-w-5xl mx-auto">
-            <Link to="/" className="text-blue-600 dark:text-blue-300 underline mb-6 inline-block">← Back</Link>
+            <Button asChild variant="secondary" className="mb-6 inline-block">
+                <Link to="/">← Back</Link>
+            </Button>
             <div className="flex flex-col md:flex-row gap-8">
                 <img
                     src={country.flags.svg}
