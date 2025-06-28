@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import CountryCard from './CountryCard';
-import { Button } from './ui/button'; // ✅ import your custom Button
+import { Button } from './ui/button';
 
 const fetchCountries = async () => {
     const response = await axios.get(
