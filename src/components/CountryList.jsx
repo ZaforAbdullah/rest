@@ -10,25 +10,21 @@ const fetchCountries = async () => {
     return response.data;
 };
 
-function CountryList({ search, region }) {
+export default function CountryList({ search, region }) {
     const { data, isLoading, isError } = useQuery({
         queryKey: ['independentCountries'],
         queryFn: fetchCountries,
-        staleTime: 1000 * 60 * 5, // 5 minutes
+        staleTime: 1000 * 60 * 5,
     });
 
     const [page, setPage] = useState(1);
     const perPage = 20;
 
-    // Filtered based on search and region props
     const filteredData = useMemo(() => {
         if (!data) return [];
-
-        return data.filter((country) => {
+        return data.filter(country => {
             const matchRegion = region === 'All' || country.region === region;
-            const matchSearch = country.name.official
-                .toLowerCase()
-                .includes(search.toLowerCase());
+            const matchSearch = country.name.official.toLowerCase().includes(search.toLowerCase());
             return matchRegion && matchSearch;
         });
     }, [data, search, region]);
@@ -45,7 +41,6 @@ function CountryList({ search, region }) {
 
     return (
         <div className="max-w-7xl mx-auto px-4 pb-8">
-            {/* Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {paginatedData.map((country) => (
                     <CountryCard key={country.cca3} country={country} highlight={search} />
@@ -55,7 +50,7 @@ function CountryList({ search, region }) {
             {/* Pagination */}
             <div className="flex justify-center mt-6 gap-4">
                 <button
-                    onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+                    onClick={() => setPage(prev => Math.max(prev - 1, 1))}
                     disabled={page === 1}
                     className="px-4 py-2 rounded bg-gray-200 dark:bg-gray-700 disabled:opacity-50"
                 >
@@ -65,7 +60,7 @@ function CountryList({ search, region }) {
                     Page {page} of {totalPages}
                 </span>
                 <button
-                    onClick={() => setPage((prev) => Math.min(prev + 1, totalPages))}
+                    onClick={() => setPage(prev => Math.min(prev + 1, totalPages))}
                     disabled={page === totalPages}
                     className="px-4 py-2 rounded bg-gray-200 dark:bg-gray-700 disabled:opacity-50"
                 >
@@ -75,5 +70,3 @@ function CountryList({ search, region }) {
         </div>
     );
 }
-
-export default CountryList;

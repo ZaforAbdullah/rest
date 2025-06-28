@@ -11,17 +11,17 @@ function highlightText(text, highlight) {
 
 function CountryCard({ country, highlight }) {
     return (
-        <Link to={`/countries/${country.cca3}`}>
-            <div className="p-4 border rounded-lg shadow-md dark:bg-gray-800 dark:text-white hover:scale-105 transition-transform">
-                <img src={country.flags.svg} alt={country.name.official} className="w-full h-40 object-cover mb-4" />
-                <h2 className="text-lg font-semibold mb-2">
-                    {highlightText(country.name.official, highlight)}
-                </h2>
-                <p><strong>Capital:</strong> {country.capital?.[0] || 'N/A'}</p>
-                <p><strong>Region:</strong> {country.region}</p>
-                <p><strong>Population:</strong> {country.population.toLocaleString()}</p>
+        <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden transition-transform hover:scale-105">
+            <img src={country.flags.svg} alt={country.name.official} className="w-full h-40 object-cover" />
+            <div className="p-4">
+                <h2 className="font-bold text-lg mb-2 dark:text-white">{country.name.official}</h2>
+                <p className="text-sm text-gray-600 dark:text-gray-300">
+                    <strong>Region:</strong> {country.region}<br />
+                    <strong>Capital:</strong> {country.capital?.[0] || 'N/A'}<br />
+                    <strong>Population:</strong> {country.population.toLocaleString()}
+                </p>
             </div>
-        </Link>
+        </div>
     );
 }
 
