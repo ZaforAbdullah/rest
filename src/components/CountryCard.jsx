@@ -1,17 +1,15 @@
+// src/components/CountryCard.jsx
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-function highlightText(text, highlight) {
-    if (!highlight) return text;
-    const regex = new RegExp(`(${highlight})`, 'gi');
-    return text.split(regex).map((part, i) =>
-        regex.test(part) ? <mark key={i} className="bg-yellow-300 dark:bg-yellow-600">{part}</mark> : part
-    );
-}
+export default function CountryCard({ country }) {
+    const navigate = useNavigate();
 
-function CountryCard({ country, highlight }) {
     return (
-        <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden transition-transform hover:scale-105">
+        <div
+            onClick={() => navigate(`/country/${country.cca3}`)}
+            className="cursor-pointer bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-all"
+        >
             <img src={country.flags.svg} alt={country.name.official} className="w-full h-40 object-cover" />
             <div className="p-4">
                 <h2 className="font-bold text-lg mb-2 dark:text-white">{country.name.official}</h2>
@@ -24,5 +22,3 @@ function CountryCard({ country, highlight }) {
         </div>
     );
 }
-
-export default CountryCard;

@@ -39,7 +39,7 @@ export default function CountriesPage() {
                 />
 
                 <h1 className="text-center text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                    Independent Countries
+                    Where in the world?
                 </h1>
 
                 <CountryList search={search} region={region} />
