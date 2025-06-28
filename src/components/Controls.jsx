@@ -14,7 +14,7 @@ export default function Controls({
     return (
         <>
             {/* Top Row: Title and Toggle */}
-            <div className="w-full flex justify-between items-center px-4 pt-6 max-w-7xl mx-auto">
+            <div className="w-full flex justify-between items-center pt-6 px-4 sm:px-8">
                 <h1 className="text-2xl font-bold dark:text-white">Where in the world?</h1>
                 <button
                     onClick={toggleDarkMode}
@@ -30,7 +30,7 @@ export default function Controls({
             </div>
 
             {/* Second Row: Search and Region */}
-            <div className="w-full max-w-7xl mx-auto px-4 mt-6 mb-6">
+            <div className="w-full px-4 sm:px-8 mt-6 mb-6">
                 <div className="flex flex-col md:flex-row justify-between items-center gap-4">
                     <input
                         type="text"

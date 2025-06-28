@@ -27,7 +27,7 @@ export default function CountriesPage() {
 
     return (
         <QueryClientProvider client={queryClient}>
-            <div className="bg-gray-100 dark:bg-gray-900 min-h-screen transition-colors duration-500">
+            <div className="w-full min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors duration-500">
                 <Controls
                     search={search}
                     onSearchChange={e => setSearch(e.target.value)}
@@ -37,7 +37,6 @@ export default function CountriesPage() {
                     darkMode={darkMode}
                     toggleDarkMode={() => setDarkMode(prev => !prev)}
                 />
-
                 <CountryList search={search} region={region} />
             </div>
         </QueryClientProvider>
