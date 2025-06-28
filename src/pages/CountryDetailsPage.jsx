@@ -1,4 +1,3 @@
-// src/pages/CountryDetailsPage.jsx
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
@@ -22,19 +21,34 @@ function CountryDetailsPage() {
 
     return (
         <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white px-4 py-8">
-            <div className="max-w-4xl mx-auto">
-                <Link to="/" className="text-blue-600 dark:text-blue-400 underline mb-4 inline-block">&larr; Back</Link>
-                <h1 className="text-3xl font-bold mb-4">{country.name.official}</h1>
-                <img src={country.flags.svg} alt={country.name.official} className="w-64 mb-6" />
+            <div className="max-w-6xl mx-auto">
+                <Link to="/" className="text-blue-600 dark:text-blue-400 underline mb-6 inline-block">
+                    &larr; Back
+                </Link>
 
-                <p><strong>Common Name:</strong> {country.name.common}</p>
-                <p><strong>Capital:</strong> {country.capital?.[0] || 'N/A'}</p>
-                <p><strong>Region:</strong> {country.region}</p>
-                <p><strong>Subregion:</strong> {country.subregion}</p>
-                <p><strong>Population:</strong> {country.population.toLocaleString()}</p>
-                <p><strong>Area:</strong> {country.area.toLocaleString()} km²</p>
-                <p><strong>Languages:</strong> {country.languages ? Object.values(country.languages).join(', ') : 'N/A'}</p>
-                <p><strong>Currencies:</strong> {country.currencies ? Object.values(country.currencies).map(c => c.name).join(', ') : 'N/A'}</p>
+                <div className="flex flex-col lg:flex-row gap-10">
+                    {/* Flag */}
+                    <div className="flex-shrink-0 w-full lg:w-1/2">
+                        <img
+                            src={country.flags.svg}
+                            alt={country.name.official}
+                            className="w-full h-auto object-contain rounded shadow"
+                        />
+                    </div>
+
+                    {/* Info */}
+                    <div className="flex flex-col justify-center w-full lg:w-1/2 space-y-2">
+                        <h1 className="text-3xl font-bold mb-4">{country.name.official}</h1>
+                        <p><strong>Common Name:</strong> {country.name.common}</p>
+                        <p><strong>Capital:</strong> {country.capital?.[0] || 'N/A'}</p>
+                        <p><strong>Region:</strong> {country.region}</p>
+                        <p><strong>Subregion:</strong> {country.subregion}</p>
+                        <p><strong>Population:</strong> {country.population.toLocaleString()}</p>
+                        <p><strong>Area:</strong> {country.area.toLocaleString()} km²</p>
+                        <p><strong>Languages:</strong> {country.languages ? Object.values(country.languages).join(', ') : 'N/A'}</p>
+                        <p><strong>Currencies:</strong> {country.currencies ? Object.values(country.currencies).map(c => c.name).join(', ') : 'N/A'}</p>
+                    </div>
+                </div>
             </div>
         </div>
     );
