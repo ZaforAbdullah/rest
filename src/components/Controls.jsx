@@ -14,11 +14,13 @@ export default function Controls({
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Top Row */}
-            <div className="flex justify-between items-center pt-6 pb-4">
-                <h1 className="text-2xl font-bold dark:text-white">Where in the world?</h1>
+            <div className="flex items-center justify-between gap-4 pt-6 pb-4 flex-nowrap">
+                <h1 className="text-xl sm:text-2xl font-bold dark:text-white truncate">
+                    Where in the world?
+                </h1>
                 <button
                     onClick={toggleDarkMode}
-                    className="text-2xl p-2 rounded-full transition-transform duration-300 hover:scale-110 focus:outline-none"
+                    className="shrink-0 text-2xl p-2 rounded-full transition-transform duration-300 hover:scale-110 focus:outline-none"
                     aria-label="Toggle Theme"
                 >
                     {darkMode ? (
@@ -28,6 +30,8 @@ export default function Controls({
                     )}
                 </button>
             </div>
+
+
 
             {/* Second Row */}
             <div className="flex flex-col gap-4 md:flex-row md:justify-between md:items-center pb-6">
