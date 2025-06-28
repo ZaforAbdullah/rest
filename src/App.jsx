@@ -21,7 +21,7 @@ function CountryList({ search }) {
 
     const [region, setRegion] = useState('All');
     const [page, setPage] = useState(1);
-    const perPage = 12;
+    const perPage = 20;
 
     const regions = useMemo(() => {
         if (!data) return [];
@@ -133,7 +133,7 @@ function Cards() {
                     />
                     <button
                         onClick={() => setDarkMode(prev => !prev)}
-                        className="px-4 py-2 border rounded dark:text-white"
+                        className="px-4 py-2 border rounded-lg bg-gray-200 text-gray-900 hover:bg-gray-300 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 transition"
                     >
                         Toggle Dark Mode
                     </button>
