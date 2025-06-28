@@ -38,10 +38,6 @@ export default function CountriesPage() {
                     toggleDarkMode={() => setDarkMode(prev => !prev)}
                 />
 
-                <h1 className="text-center text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                    Where in the world?
-                </h1>
-
                 <CountryList search={search} region={region} />
             </div>
         </QueryClientProvider>

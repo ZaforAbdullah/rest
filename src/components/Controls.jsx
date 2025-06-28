@@ -13,23 +13,24 @@ export default function Controls({
 }) {
     return (
         <>
-            {/* 🌙 Sticky Toggle - top-right with spacing */}
-            <div className="sticky top-0 z-20 w-full flex justify-end pr-6 pt-4 bg-inherit">
+            {/* Top Row: Title and Toggle */}
+            <div className="w-full flex justify-between items-center px-4 pt-6 max-w-7xl mx-auto">
+                <h1 className="text-2xl font-bold dark:text-white">Where in the world?</h1>
                 <button
                     onClick={toggleDarkMode}
-                    className="text-2xl p-2 rounded-full transition-all duration-500 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    className="text-2xl p-2 rounded-full transition-transform duration-300 hover:scale-110 focus:outline-none"
                     aria-label="Toggle Theme"
                 >
                     {darkMode ? (
-                        <FaSun className="text-yellow-400 transition-transform duration-500" />
+                        <FaSun className="text-yellow-400 transition duration-300" />
                     ) : (
-                        <FaMoon className="text-gray-900 dark:text-white transition-transform duration-500" />
+                        <FaMoon className="text-gray-900 dark:text-white transition duration-300" />
                     )}
                 </button>
             </div>
 
-            {/* Search + Region Filter Row */}
-            <div className="w-full max-w-7xl mx-auto px-4 mt-4 mb-6">
+            {/* Second Row: Search and Region */}
+            <div className="w-full max-w-7xl mx-auto px-4 mt-6 mb-6">
                 <div className="flex flex-col md:flex-row justify-between items-center gap-4">
                     <input
                         type="text"
