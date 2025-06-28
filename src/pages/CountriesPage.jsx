@@ -28,16 +28,18 @@ export default function CountriesPage() {
     return (
         <QueryClientProvider client={queryClient}>
             <div className="w-full min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors duration-500">
-                <Controls
-                    search={search}
-                    onSearchChange={e => setSearch(e.target.value)}
-                    region={region}
-                    onRegionChange={e => setRegion(e.target.value)}
-                    regions={regions}
-                    darkMode={darkMode}
-                    toggleDarkMode={() => setDarkMode(prev => !prev)}
-                />
-                <CountryList search={search} region={region} />
+                <div className="max-w-7xl mx-auto px-4 sm:px-8">
+                    <Controls
+                        search={search}
+                        onSearchChange={e => setSearch(e.target.value)}
+                        region={region}
+                        onRegionChange={e => setRegion(e.target.value)}
+                        regions={regions}
+                        darkMode={darkMode}
+                        toggleDarkMode={() => setDarkMode(prev => !prev)}
+                    />
+                    <CountryList search={search} region={region} />
+                </div>
             </div>
         </QueryClientProvider>
     );

@@ -1,4 +1,3 @@
-// src/components/Controls.jsx
 import React from 'react';
 import { FaSun, FaMoon } from 'react-icons/fa';
 
@@ -12,9 +11,9 @@ export default function Controls({
     toggleDarkMode
 }) {
     return (
-        <>
+        <div className="max-w-7xl mx-auto px-4">
             {/* Top Row: Title and Toggle */}
-            <div className="w-full flex justify-between items-center pt-6 px-4 sm:px-8">
+            <div className="w-full flex justify-between items-center pt-6">
                 <h1 className="text-2xl font-bold dark:text-white">Where in the world?</h1>
                 <button
                     onClick={toggleDarkMode}
@@ -30,7 +29,7 @@ export default function Controls({
             </div>
 
             {/* Second Row: Search and Region */}
-            <div className="w-full px-4 sm:px-8 mt-6 mb-6">
+            <div className="w-full mt-6 mb-6">
                 <div className="flex flex-col md:flex-row justify-between items-center gap-4">
                     <input
                         type="text"
@@ -51,6 +50,6 @@ export default function Controls({
                     </select>
                 </div>
             </div>
-        </>
+        </div>
     );
 }
