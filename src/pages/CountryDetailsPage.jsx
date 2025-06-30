@@ -11,6 +11,12 @@ export default function CountryDetailsPage() {
     if (isLoading) return <div className="text-center mt-10 text-lg">Loading...</div>;
     if (isError || !country) return <div className="text-center mt-10 text-red-500">Country not found.</div>;
 
+    const formattedPopulation = new Intl.NumberFormat().format(country.population);
+    const formattedLanguages = country.languages ? Object.values(country.languages).join(', ') : 'N/A';
+    const formattedCurrencies = country.currencies
+        ? Object.values(country.currencies).map(c => c.name).join(', ')
+        : 'N/A';
+
     return (
         <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white">
             <div className="max-w-7xl mx-auto px-4 py-6">
@@ -19,6 +25,7 @@ export default function CountryDetailsPage() {
                 </Button>
                 <div className="flex flex-col md:flex-row gap-8">
                     <img
+                        loading="lazy"
                         src={country.flags.svg}
                         alt={country.name.official}
                         className="w-full md:w-1/2 rounded object-contain max-h-[300px]"
@@ -29,12 +36,13 @@ export default function CountryDetailsPage() {
                         <p><strong>Region:</strong> {country.region}</p>
                         <p><strong>Subregion:</strong> {country.subregion || 'N/A'}</p>
                         <p><strong>Capital:</strong> {country.capital?.join(', ') || 'N/A'}</p>
-                        <p><strong>Population:</strong> {country.population.toLocaleString()}</p>
-                        <p><strong>Languages:</strong> {country.languages ? Object.values(country.languages).join(', ') : 'N/A'}</p>
-                        <p><strong>Currencies:</strong> {country.currencies ? Object.values(country.currencies).map(c => c.name).join(', ') : 'N/A'}</p>
+                        <p><strong>Population:</strong> {formattedPopulation}</p>
+                        <p><strong>Languages:</strong> {formattedLanguages}</p>
+                        <p><strong>Currencies:</strong> {formattedCurrencies}</p>
                     </div>
                 </div>
             </div>
         </div>
     );
 }
+
