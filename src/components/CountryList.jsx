@@ -1,3 +1,4 @@
+// src/components/CountryList.jsx
 import React, { useMemo, useState } from 'react';
 import CountryCard from './CountryCard';
 import { Button } from './ui/button';

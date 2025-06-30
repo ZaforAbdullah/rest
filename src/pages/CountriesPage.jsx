@@ -1,3 +1,4 @@
+// src/pages/CountriesPage.jsx
 import React, { useMemo, useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Controls from '../components/Controls';
