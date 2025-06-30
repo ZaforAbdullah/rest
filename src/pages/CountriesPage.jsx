@@ -1,13 +1,9 @@
-// src/pages/CountriesPage.jsx
 import React, { useMemo, useState } from 'react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Controls from '../components/Controls';
 import CountryList from '../components/CountryList';
 import { useCountries } from '../features/countries/useCountries';
 
-const queryClient = new QueryClient();
-
-function InnerPage() {
+export default function CountriesPage() {
     const [search, setSearch] = useState('');
     const [region, setRegion] = useState('All');
     const { data: countries = [], isLoading, isError } = useCountries();
@@ -27,16 +23,14 @@ function InnerPage() {
                     onRegionChange={e => setRegion(e.target.value)}
                     regions={regions}
                 />
-                <CountryList search={search} region={region} countries={countries} isLoading={isLoading} isError={isError} />
+                <CountryList
+                    search={search}
+                    region={region}
+                    countries={countries}
+                    isLoading={isLoading}
+                    isError={isError}
+                />
             </div>
         </div>
-    );
-}
-
-export default function CountriesPage() {
-    return (
-        <QueryClientProvider client={queryClient}>
-            <InnerPage />
-        </QueryClientProvider>
     );
 }
