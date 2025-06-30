@@ -1,24 +1,15 @@
 // src/pages/CountryDetailsPage.jsx
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import axios from 'axios';
 import { Button } from '@/components/ui/button';
+import { useCountry } from '../features/countries/useCountries';
 
 export default function CountryDetailsPage() {
     const { code } = useParams();
-    const [country, setCountry] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const { data: country, isLoading, isError } = useCountry(code);
 
-    useEffect(() => {
-        axios.get(`https://restcountries.com/v3.1/alpha/${code}`)
-            .then(res => {
-                setCountry(res.data[0]);
-                setLoading(false);
-            }).catch(() => setLoading(false));
-    }, [code]);
-
-    if (loading) return <div className="text-center mt-10 text-lg">Loading...</div>;
-    if (!country) return <div className="text-center mt-10 text-red-500">Country not found.</div>;
+    if (isLoading) return <div className="text-center mt-10 text-lg">Loading...</div>;
+    if (isError || !country) return <div className="text-center mt-10 text-red-500">Country not found.</div>;
 
     return (
         <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white">
@@ -47,4 +38,3 @@ export default function CountryDetailsPage() {
         </div>
     );
 }
-

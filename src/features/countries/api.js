@@ -7,3 +7,8 @@ export const fetchCountries = async () => {
     );
     return response.data;
 };
+
+export const fetchCountryByCode = async (code) => {
+    const response = await axios.get(`https://restcountries.com/v3.1/alpha/${code}`);
+    return response.data[0];
+};

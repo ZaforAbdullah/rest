@@ -6,7 +6,7 @@ import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     // Remove StrictMode for development to avoid double effect
-    // <React.StrictMode>
-    <App />
-    // </React.StrictMode>
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>
 );
