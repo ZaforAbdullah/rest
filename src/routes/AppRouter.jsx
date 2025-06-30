@@ -9,7 +9,7 @@ function AppRouter() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<CountriesPage />} />
-                <Route path="/countries/:code" element={<CountryDetailsPage />} />
+                <Route path="/country/:code" element={<CountryDetailsPage />} />
             </Routes>
         </BrowserRouter>
     );
