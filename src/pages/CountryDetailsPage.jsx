@@ -83,7 +83,7 @@ export default function CountryDetailsPage() {
                             <img
                                 src={country.flags.svg}
                                 alt={country.name.official}
-                                className="w-full h-auto max-h-[320px] object-contain rounded border shadow"
+                                className="w-full h-auto max-h-[320px] object-contain rounded"
                                 loading="lazy"
                             />
                         </div>
