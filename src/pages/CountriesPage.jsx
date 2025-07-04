@@ -1,4 +1,3 @@
-// src/pages/CountriesPage.jsx
 import React, { useState, useMemo, useCallback } from 'react';
 import Controls from '../features/countries/components/Controls';
 import CountryList from '../features/countries/components/CountryList';
@@ -21,24 +20,26 @@ export default function CountriesPage() {
     const toggleDarkMode = useCallback(() => setDarkMode(prev => !prev), [setDarkMode]);
 
     return (
-        <div className="w-full min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors duration-500">
-            <div className="max-w-7xl mx-auto px-4 sm:px-8">
-                <Controls
-                    search={search}
-                    onSearchChange={handleSearchChange}
-                    region={region}
-                    onRegionChange={handleRegionChange}
-                    regions={regions}
-                    darkMode={darkMode}
-                    toggleDarkMode={toggleDarkMode}
-                />
-                <CountryList
-                    search={search}
-                    region={region}
-                    countries={countries}
-                    isLoading={isLoading}
-                    isError={isError}
-                />
+        <div className={`${darkMode ? 'dark' : ''}`}>
+            <div className="w-full min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors duration-500">
+                <div className="max-w-7xl mx-auto px-4 sm:px-8">
+                    <Controls
+                        search={search}
+                        onSearchChange={handleSearchChange}
+                        region={region}
+                        onRegionChange={handleRegionChange}
+                        regions={regions}
+                        darkMode={darkMode}
+                        toggleDarkMode={toggleDarkMode}
+                    />
+                    <CountryList
+                        search={search}
+                        region={region}
+                        countries={countries}
+                        isLoading={isLoading}
+                        isError={isError}
+                    />
+                </div>
             </div>
         </div>
     );
