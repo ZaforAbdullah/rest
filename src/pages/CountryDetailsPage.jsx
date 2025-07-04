@@ -2,7 +2,7 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { useCountry } from '../features/countries/useCountries';
+import { useCountry } from '../features/countries/hooks/useCountries';
 
 export default function CountryDetailsPage() {
     const { code } = useParams();

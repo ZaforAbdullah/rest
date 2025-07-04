@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from './ui/button';
+import { Button } from '@/components/ui/button';
 
 const Pagination = React.memo(function Pagination({ page, totalPages, onPageChange }) {
     const handlePrev = React.useCallback(() => {

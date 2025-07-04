@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useCallback } from 'react';
-import Controls from '../components/Controls';
-import CountryList from '../components/CountryList';
-import { useCountries } from '../features/countries/useCountries';
+import Controls from '../features/countries/components/Controls';
+import CountryList from '../features/countries/components/CountryList';
+import { useCountries } from '../features/countries/hooks/useCountries';
 import useDarkMode from '../hooks/useDarkMode';
 
 export default function CountriesPage() {
