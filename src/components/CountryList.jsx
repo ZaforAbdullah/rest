@@ -1,6 +1,5 @@
-// src/components/CountryList.jsx
 import React, { useMemo, useState } from 'react';
-import CountryGrid from './CountryGrid';
+import CountryCard from './CountryCard';
 import Pagination from './Pagination';
 
 export default function CountryList({ search, region, countries, isLoading, isError }) {
@@ -27,13 +26,12 @@ export default function CountryList({ search, region, countries, isLoading, isEr
 
     return (
         <div className="max-w-7xl mx-auto px-4 pb-8">
-            <CountryGrid countries={paginatedData} />
-            <Pagination
-                page={page}
-                totalPages={totalPages}
-                onPrev={() => setPage(prev => Math.max(prev - 1, 1))}
-                onNext={() => setPage(prev => Math.min(prev + 1, totalPages))}
-            />
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                {paginatedData.map((country) => (
+                    <CountryCard key={country.cca3} country={country} />
+                ))}
+            </div>
+            <Pagination page={page} totalPages={totalPages} onPageChange={setPage} />
         </div>
     );
 }

@@ -1,27 +1,35 @@
-import React, { useMemo, useState } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import Controls from '../components/Controls';
 import CountryList from '../components/CountryList';
 import { useCountries } from '../features/countries/useCountries';
+import useDarkMode from '../hooks/useDarkMode';
 
 export default function CountriesPage() {
+    const [darkMode, setDarkMode] = useDarkMode();
     const [search, setSearch] = useState('');
     const [region, setRegion] = useState('All');
     const { data: countries = [], isLoading, isError } = useCountries();
 
     const regions = useMemo(() => {
-        const uniqueRegions = Array.from(new Set(countries.map(c => c.region).filter(Boolean)));
-        return ['All', ...uniqueRegions];
+        const unique = Array.from(new Set(countries.map(c => c.region).filter(Boolean)));
+        return ['All', ...unique];
     }, [countries]);
+
+    const handleSearchChange = useCallback((e) => setSearch(e.target.value), []);
+    const handleRegionChange = useCallback((e) => setRegion(e.target.value), []);
+    const toggleDarkMode = useCallback(() => setDarkMode(prev => !prev), [setDarkMode]);
 
     return (
         <div className="w-full min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors duration-500">
             <div className="max-w-7xl mx-auto px-4 sm:px-8">
                 <Controls
                     search={search}
-                    onSearchChange={e => setSearch(e.target.value)}
+                    onSearchChange={handleSearchChange}
                     region={region}
-                    onRegionChange={e => setRegion(e.target.value)}
+                    onRegionChange={handleRegionChange}
                     regions={regions}
+                    darkMode={darkMode}
+                    toggleDarkMode={toggleDarkMode}
                 />
                 <CountryList
                     search={search}
