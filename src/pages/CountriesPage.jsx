@@ -1,3 +1,4 @@
+// src/pages/CountriesPage.jsx
 import React, { useState, useMemo, useCallback } from 'react';
 import Controls from '../features/countries/components/Controls';
 import CountryList from '../features/countries/components/CountryList';

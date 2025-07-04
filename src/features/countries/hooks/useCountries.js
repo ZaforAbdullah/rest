@@ -1,4 +1,4 @@
-// src/features/countries/useCountries.js
+// src/features/countries/hooks/useCountries.js
 import { useQuery } from '@tanstack/react-query';
 import { fetchCountries, fetchCountryByCode } from '../api';
 

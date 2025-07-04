@@ -1,4 +1,4 @@
-// src/components/CountryGrid.jsx
+// src/features/countries/components/CountryGrid.jsx
 import React from 'react';
 import CountryCard from './CountryCard';
 

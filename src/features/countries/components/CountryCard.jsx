@@ -1,4 +1,4 @@
-// src/components/CountryCard.jsx
+// src/features/countries/components/CountryCard.jsx
 import React, { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 
