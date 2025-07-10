@@ -1,8 +1,9 @@
+// src/pages/CountriesPage.jsx
 import React, { useState, useMemo, useCallback } from 'react';
+import useDarkMode from '../hooks/useDarkMode';
+import { useCountries } from '../features/countries/hooks/useCountries';
 import Controls from '../features/countries/components/Controls';
 import CountryList from '../features/countries/components/CountryList';
-import { useCountries } from '../features/countries/hooks/useCountries';
-import useDarkMode from '../hooks/useDarkMode';
 
 export default function CountriesPage() {
     const [darkMode, setDarkMode] = useDarkMode();

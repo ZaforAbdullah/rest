@@ -1,8 +1,8 @@
 // src/features/countries/components/CountryList.jsx
 import React, { useMemo, useState } from 'react';
+import SkeletonCard from './SkeletonCard';
 import CountryCard from './CountryCard';
 import Pagination from './Pagination';
-import SkeletonCard from './SkeletonCard';
 
 export default function CountryList({ search, region, countries, isLoading, isError }) {
     const [page, setPage] = useState(1);

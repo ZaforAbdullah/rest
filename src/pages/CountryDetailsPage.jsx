@@ -1,12 +1,13 @@
+// src/pages/CountryDetailsPage.jsx
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowLeftIcon } from "@radix-ui/react-icons";
-import { useCountry } from "@/features/countries/hooks/useCountries";
-import useDarkMode from "@/hooks/useDarkMode";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import useDarkMode from "@/hooks/useDarkMode";
+import { useCountry } from "@/features/countries/hooks/useCountries";
 
 function DetailRow({ label, value }) {
     return (
@@ -147,23 +148,6 @@ export default function CountryDetailsPage() {
                         </div>
                     </motion.div>
                 </div>
-            </div>
-        </div>
-    );
-}
-
-
-
-// Skeleton for full detail page
-function SkeletonDetail() {
-    return (
-        <div className="flex flex-col md:flex-row gap-8 animate-pulse">
-            <div className="w-full md:w-1/2 h-[300px] rounded bg-muted" />
-            <div className="flex-1 space-y-3">
-                <div className="h-6 w-2/3 rounded bg-muted" />
-                {Array.from({ length: 7 }).map((_, i) => (
-                    <div key={i} className="h-4 w-full rounded bg-muted" />
-                ))}
             </div>
         </div>
     );
