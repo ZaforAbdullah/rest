@@ -1,9 +1,9 @@
 // src/routes/AppRouter.jsx
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import CountriesPage from "../pages/CountriesPage";
+import CountriesPage from "../features/countries/pages/CountriesPage";
 
-const CountryDetailsPage = lazy(() => import("../pages/CountryDetailsPage"));
+const CountryDetailsPage = lazy(() => import("../features/countries/pages/CountryDetailsPage"));
 
 function AppRouter() {
     return (
