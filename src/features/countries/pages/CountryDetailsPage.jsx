@@ -8,6 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import useDarkMode from "@/hooks/useDarkMode";
 import { useCountry } from "@/features/countries/hooks/useCountries";
+import LoadingSpinner from '@/components/ui/LoadingSpinner';
 
 function DetailRow({ label, value }) {
     return (
@@ -40,7 +41,7 @@ export default function CountryDetailsPage() {
     });
 
     if (isLoading)
-        return <div className="text-center mt-10 text-lg">Loading country…</div>;
+        return <LoadingSpinner text="Loading country details..." />;
     if (isError || !country)
         return (
             <div className="text-center mt-10 text-red-500">Country not found.</div>
@@ -80,6 +81,11 @@ export default function CountryDetailsPage() {
                         transition={{ duration: 0.3 }}
                         className="flex flex-col md:flex-row gap-8"
                     >
+                        <nav className="text-sm mb-4 text-muted-foreground">
+                            <Link to="/" className="hover:underline">Home</Link>
+                            <span className="mx-2">/</span>
+                            <span>{country.name.common}</span>
+                        </nav>
                         <div className="w-full md:w-1/2">
                             <img
                                 src={country.flags.svg}
