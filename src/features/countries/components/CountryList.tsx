@@ -1,9 +1,9 @@
 // src/features/countries/components/CountryList.tsx
-import React, { useMemo, useState } from 'react';
-import CountryCard from './CountryCard';
-import Pagination from './Pagination';
-import SkeletonCard from './SkeletonCard';
-import type { Country } from '../types';
+import { useMemo, useState } from 'react';
+import CountryCard from '@/features/countries/components/CountryCard';
+import Pagination from '@/features/countries/components/Pagination';
+import SkeletonCard from '@/features/countries/components/SkeletonCard';
+import type { Country } from '@/features/countries/types';
 
 interface CountryListProps {
     search: string;

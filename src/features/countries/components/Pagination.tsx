@@ -1,6 +1,6 @@
 // src/features/countries/components/Pagination.tsx
 import React from 'react';
-import { Button } from '../../../components/ui/button';
+import { Button } from '@/components/ui/button';
 
 interface PaginationProps {
     page: number;

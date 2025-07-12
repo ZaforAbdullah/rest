@@ -2,13 +2,13 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Button } from '../../../components/ui/button';
+import { Button } from '@/components/ui/button';
 import { ArrowLeftIcon } from '@radix-ui/react-icons';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { useCountry } from '../hooks/useCountries';
-import type { Country } from '../types';
-import useDarkMode from '../../../hooks/useDarkMode';
+import { useCountry } from '@/features/countries/hooks/useCountries';
+import type { Country } from '@/features/countries/types';
+import useDarkMode from '@/hooks/useDarkMode';
 
 function DetailRow({ label, value }: { label: string; value: React.ReactNode }) {
     return (

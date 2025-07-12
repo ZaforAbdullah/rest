@@ -1,10 +1,10 @@
 // src/pages/CountriesPage.tsx
 import type { JSX } from 'react';
 import React, { useState, useMemo, useCallback } from 'react';
-import useDarkMode from '../../../hooks/useDarkMode';
-import { useCountries } from '../hooks/useCountries';
-import Controls from '../components/Controls';
-import CountryList from '../components/CountryList';
+import useDarkMode from '@/hooks/useDarkMode';
+import { useCountries } from '@/features/countries/hooks/useCountries';
+import Controls from '@/features/countries/components/Controls';
+import CountryList from '@/features/countries/components/CountryList';
 
 export default function CountriesPage(): JSX.Element {
     const [darkMode, setDarkMode] = useDarkMode();

@@ -1,7 +1,7 @@
 // src/features/countries/components/Controls.tsx
 import React from 'react';
 import { FaSun, FaMoon, FaTimes } from 'react-icons/fa';
-import { Button } from '../../../components/ui/button';
+import { Button } from '@/components/ui/button';
 
 interface ControlsProps {
     search: string;

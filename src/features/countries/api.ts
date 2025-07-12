@@ -1,6 +1,6 @@
 // src/features/countries/api.ts
 import axios from 'axios';
-import type { Country } from './types';
+import type { Country } from '@/features/countries/types';
 
 export const fetchCountries = async (): Promise<Country[]> => {
     const response = await axios.get(
