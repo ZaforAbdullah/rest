@@ -8,6 +8,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { useCountry } from '../hooks/useCountries';
 import { Country } from '../types';
+import useDarkMode from '../../../hooks/useDarkMode';
 
 function DetailRow({ label, value }: { label: string; value: React.ReactNode }) {
     return (
