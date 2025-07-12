@@ -1,7 +1,7 @@
 // src/features/countries/hooks/useCountries.ts
 import { useQuery } from '@tanstack/react-query';
 import { fetchCountries, fetchCountryByCode } from '../api';
-import { Country } from '../types';
+import type { Country } from '../types';
 
 export const useCountries = () => {
     return useQuery<Country[]>({

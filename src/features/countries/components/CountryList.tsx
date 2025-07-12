@@ -3,7 +3,7 @@ import React, { useMemo, useState } from 'react';
 import CountryCard from './CountryCard';
 import Pagination from './Pagination';
 import SkeletonCard from './SkeletonCard';
-import { Country } from '../types';
+import type { Country } from '../types';
 
 interface CountryListProps {
     search: string;

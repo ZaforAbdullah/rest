@@ -2,7 +2,7 @@
 import React, { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card, CardContent } from '../../../components/ui/card';
-import { Country } from '../types';
+import type { Country } from '../types';
 
 interface CountryCardProps {
     country: Country;
