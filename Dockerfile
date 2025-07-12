@@ -21,3 +21,4 @@ CMD ["npm", "run", "dev"]
 # npx shadcn@latest init --base-color neutral --yes
 # npx shadcn-ui@latest add card
 # npm install -D @rollup/plugin-alias
+# npx tsc --init

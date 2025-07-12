@@ -1,14 +1,24 @@
-// src/features/countries/components/Pagination.jsx
+// src/features/countries/components/Pagination.tsx
 import React from 'react';
-import { Button } from '@/components/ui/button';
+import { Button } from '../../../components/ui/button';
 
-const Pagination = React.memo(function Pagination({ page, totalPages, onPageChange }) {
+interface PaginationProps {
+    page: number;
+    totalPages: number;
+    onPageChange: React.Dispatch<React.SetStateAction<number>>;
+}
+
+const Pagination = React.memo(function Pagination({
+    page,
+    totalPages,
+    onPageChange,
+}: PaginationProps) {
     const handlePrev = React.useCallback(() => {
-        onPageChange(prev => Math.max(prev - 1, 1));
+        onPageChange((prev) => Math.max(prev - 1, 1));
     }, [onPageChange]);
 
     const handleNext = React.useCallback(() => {
-        onPageChange(prev => Math.min(prev + 1, totalPages));
+        onPageChange((prev) => Math.min(prev + 1, totalPages));
     }, [onPageChange, totalPages]);
 
     return (

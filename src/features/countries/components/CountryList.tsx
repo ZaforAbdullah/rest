@@ -1,15 +1,30 @@
-// src/features/countries/components/CountryList.jsx
+// src/features/countries/components/CountryList.tsx
 import React, { useMemo, useState } from 'react';
-import SkeletonCard from './SkeletonCard';
 import CountryCard from './CountryCard';
 import Pagination from './Pagination';
+import SkeletonCard from './SkeletonCard';
+import { Country } from '../types';
 
-export default function CountryList({ search, region, countries, isLoading, isError }) {
-    const [page, setPage] = useState(1);
+interface CountryListProps {
+    search: string;
+    region: string;
+    countries: Country[];
+    isLoading: boolean;
+    isError: boolean;
+}
+
+export default function CountryList({
+    search,
+    region,
+    countries,
+    isLoading,
+    isError,
+}: CountryListProps) {
+    const [page, setPage] = useState<number>(1);
     const perPage = 20;
 
     const filteredData = useMemo(() => {
-        return countries.filter(country => {
+        return countries.filter((country) => {
             const matchRegion = region === 'All' || country.region === region;
             const matchSearch = country.name.official.toLowerCase().includes(search.toLowerCase());
             return matchRegion && matchSearch;
@@ -35,7 +50,9 @@ export default function CountryList({ search, region, countries, isLoading, isEr
             {!isLoading && !isError && (
                 <Pagination page={page} totalPages={totalPages} onPageChange={setPage} />
             )}
-            {isError && <div className="text-center mt-10 text-red-500">Error loading countries.</div>}
+            {isError && (
+                <div className="text-center mt-10 text-red-500">Error loading countries.</div>
+            )}
         </div>
     );
 }

@@ -1,20 +1,30 @@
-// src/features/countries/components/Controls.jsx
+// src/features/countries/components/Controls.tsx
 import React from 'react';
 import { FaSun, FaMoon, FaTimes } from 'react-icons/fa';
-import { Button } from '@/components/ui/button';
+import { Button } from '../../../components/ui/button';
 
-const Controls = React.memo(function Controls({
+interface ControlsProps {
+    search: string;
+    onSearchChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    region: string;
+    onRegionChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+    regions: string[];
+    darkMode: boolean;
+    toggleDarkMode: () => void;
+}
+
+const Controls: React.FC<ControlsProps> = React.memo(function Controls({
     search,
     onSearchChange,
     region,
     onRegionChange,
     regions,
     darkMode,
-    toggleDarkMode
+    toggleDarkMode,
 }) {
     const handleClear = () => {
-        onSearchChange({ target: { value: '' } });
-        onRegionChange({ target: { value: 'All' } });
+        onSearchChange({ target: { value: '' } } as React.ChangeEvent<HTMLInputElement>);
+        onRegionChange({ target: { value: 'All' } } as React.ChangeEvent<HTMLSelectElement>);
     };
 
     return (
@@ -28,7 +38,11 @@ const Controls = React.memo(function Controls({
                     className="shrink-0 text-2xl p-2 rounded-full transition-transform duration-300 hover:scale-110 focus:outline-none"
                     aria-label="Toggle Theme"
                 >
-                    {darkMode ? <FaSun className="text-yellow-400" /> : <FaMoon className="text-gray-900 dark:text-white" />}
+                    {darkMode ? (
+                        <FaSun className="text-yellow-400" />
+                    ) : (
+                        <FaMoon className="text-gray-900 dark:text-white" />
+                    )}
                 </button>
             </div>
 

@@ -1,11 +1,12 @@
-// src/pages/CountriesPage.jsx
+// src/pages/CountriesPage.tsx
+import type { JSX } from 'react';
 import React, { useState, useMemo, useCallback } from 'react';
 import useDarkMode from '../../../hooks/useDarkMode';
 import { useCountries } from '../hooks/useCountries';
 import Controls from '../components/Controls';
 import CountryList from '../components/CountryList';
 
-export default function CountriesPage() {
+export default function CountriesPage(): JSX.Element {
     const [darkMode, setDarkMode] = useDarkMode();
     const [search, setSearch] = useState('');
     const [region, setRegion] = useState('All');
@@ -16,8 +17,8 @@ export default function CountriesPage() {
         return ['All', ...unique];
     }, [countries]);
 
-    const handleSearchChange = useCallback((e) => setSearch(e.target.value), []);
-    const handleRegionChange = useCallback((e) => setRegion(e.target.value), []);
+    const handleSearchChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value), []);
+    const handleRegionChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => setRegion(e.target.value), []);
     const toggleDarkMode = useCallback(() => setDarkMode(prev => !prev), [setDarkMode]);
 
     return (
