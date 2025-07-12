@@ -20,5 +20,11 @@ CMD ["npm", "run", "dev"]
 # npm install -D tailwindcss
 # npx shadcn@latest init --base-color neutral --yes
 # npx shadcn-ui@latest add card
-# npm install -D @rollup/plugin-alias
+# npm install -D @rollup/plugin-aliafs
 # npx tsc --init
+# RUN npx shadcn@latest init
+# RUN npm install tailwindcss @tailwindcss/vite
+# npm install -D tailwindcss postcss autoprefixer
+# npx tailwindcss init -p
+# npm install tailwindcss @tailwindcss/cli
+# npx shadcn@latest add card
