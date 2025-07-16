@@ -1,5 +1,6 @@
 // src/features/countries/components/CountryCard.tsx
 import React, { useMemo } from 'react';
+import type { JSX } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
 import type { Country } from '@/features/countries/types';

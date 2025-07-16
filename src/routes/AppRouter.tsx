@@ -1,12 +1,13 @@
 // src/routes/AppRouter.tsx
-import React, { Suspense, lazy } from 'react';
+import { Suspense, lazy } from 'react';
+import type { ReactElement } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import CountriesPage from "../features/countries/pages/CountriesPage";
 import ScrollToTop from '../components/ui/ScrollToTop';
 
 const CountryDetailsPage = lazy(() => import('../features/countries/pages/CountryDetailsPage'));
 
-export default function AppRouter(): React.ReactElement {
+export default function AppRouter(): ReactElement {
     return (
         <BrowserRouter>
             <ScrollToTop />
