@@ -28,4 +28,4 @@ CMD ["npm", "run", "dev"]
 # npx tailwindcss init -p
 # npm install tailwindcss @tailwindcss/cli
 # npx shadcn@latest add card
-# npm install --save-dev vitest @testing-library/react @testing-library/jest-dom @testing-library/user-event jsdom @vitejs/plugin-react
+# npm install --save-dev vitest @testing-library/react @testing-library/jest-dom @testing-library/user-event jsdom @vitejs/plugin-react @types/jest

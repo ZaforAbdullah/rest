@@ -1,13 +1,13 @@
-// vite.config.ts
 import { defineConfig } from 'vite';
-import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react';
+import tailwindcss from '@tailwindcss/vite';
 import path from 'path';
 
+// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
-    tailwindcss()
+    tailwindcss(),
   ],
   resolve: {
     alias: {
@@ -20,6 +20,14 @@ export default defineConfig({
     strictPort: true,
     watch: {
       usePolling: true,
+    },
+  },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './src/setupTests.ts',
+    coverage: {
+      reporter: ['text', 'json', 'html'],
     },
   },
 });
