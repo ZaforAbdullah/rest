@@ -28,6 +28,10 @@ export default defineConfig({
     setupFiles: './src/setupTests.ts',
     coverage: {
       reporter: ['text', 'json', 'html'],
+      // 100: true,
+      // functions: 100,
+      // branches: 100,
+      // statements: 100,
     },
   },
 });
