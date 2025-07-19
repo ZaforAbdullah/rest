@@ -35,6 +35,7 @@ const CountryCard = React.memo(function CountryCard({
 
     return (
         <Card
+            data-testid={`country-card-${country.cca3}`}
             onClick={handleClick}
             onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => e.key === 'Enter' && handleClick()}
             role="button"

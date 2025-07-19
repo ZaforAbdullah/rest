@@ -67,6 +67,7 @@ export default function CountryDetailsPage() {
                         size="icon"
                         className="mb-6"
                         aria-label="Go back"
+                        data-testid="back-button"
                     >
                         <Link to="/" style={{ display: 'flex', alignItems: 'center', width: '100%', height: '100%' }}>
                             <ArrowLeftIcon className="size-5" />
@@ -122,14 +123,17 @@ export default function CountryDetailsPage() {
                                                 ))}
                                             </div>
                                         ) : (borderCountries?.length ?? 0) > 0 ? (
-                                            <div className="flex flex-wrap gap-2">
+                                            <div
+                                                data-testid="border-countries"
+                                                className="flex flex-wrap gap-2"
+                                            >
                                                 {borderCountries?.map((border) => (
-                                                    <Link to={`/country/${border.cca3}`} key={border.cca3}>
-                                                        <Button
-                                                            variant="outline"
-                                                            size="sm"
-                                                            className="text-xs"
-                                                        >
+                                                    <Link
+                                                        to={`/country/${border.cca3}`}
+                                                        key={border.cca3}
+                                                        data-testid={`border-country-${border.cca3}`}
+                                                    >
+                                                        <Button variant="outline" size="sm" className="text-xs">
                                                             {border.name.common}
                                                         </Button>
                                                     </Link>
