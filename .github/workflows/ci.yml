@@ -106,7 +106,7 @@ jobs:
       - name: Run Cypress E2E tests
         run: npm run cypress
         env:
-          CYPRESS_baseUrl: http://localhost:4173
+          CYPRESS_baseUrl: http://localhost:4173/#/
 
       - name: Upload Cypress screenshots
         if: failure()

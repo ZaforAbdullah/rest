@@ -1,7 +1,7 @@
 // src/routes/AppRouter.tsx
 import { Suspense, lazy } from 'react'
 import type { ReactElement } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { HashRouter, Routes, Route } from 'react-router-dom' // <-- change here
 import CountriesPage from '../features/countries/pages/CountriesPage'
 import ScrollToTop from '../components/ui/ScrollToTop'
 
@@ -9,7 +9,7 @@ const CountryDetailsPage = lazy(() => import('../features/countries/pages/Countr
 
 export default function AppRouter(): ReactElement {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <ScrollToTop />
       <Suspense fallback={<div className="text-center py-20">Loading page…</div>}>
         <Routes>
@@ -21,6 +21,6 @@ export default function AppRouter(): ReactElement {
           />
         </Routes>
       </Suspense>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
