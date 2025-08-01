@@ -4,30 +4,30 @@ import { FaSun, FaMoon, FaTimes } from 'react-icons/fa';
 import { Button } from '@/components/ui/button';
 
 interface ControlsProps {
-    search: string;
-    onSearchChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    region: string;
-    onRegionChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-    regions: string[];
-    darkMode: boolean;
-    toggleDarkMode: () => void;
+  search: string;
+  onSearchChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  region: string;
+  onRegionChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  regions: string[];
+  darkMode: boolean;
+  toggleDarkMode: () => void;
 }
 
 const Controls: React.FC<ControlsProps> = React.memo(function Controls({
-    search,
-    onSearchChange,
-    region,
-    onRegionChange,
-    regions,
-    darkMode,
-    toggleDarkMode,
+  search,
+  onSearchChange,
+  region,
+  onRegionChange,
+  regions,
+  darkMode,
+  toggleDarkMode,
 }) {
-    const handleClear = () => {
-        onSearchChange({ target: { value: '' } } as React.ChangeEvent<HTMLInputElement>);
-        onRegionChange({ target: { value: 'All' } } as React.ChangeEvent<HTMLSelectElement>);
-    };
+  const handleClear = () => {
+    onSearchChange({ target: { value: '' } } as React.ChangeEvent<HTMLInputElement>);
+    onRegionChange({ target: { value: 'All' } } as React.ChangeEvent<HTMLSelectElement>);
+  };
 
-    return (
+  return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between gap-4 pt-6 pb-4 flex-nowrap">
                 <h1 className="text-xl sm:text-2xl font-bold dark:text-white truncate">
@@ -72,7 +72,7 @@ const Controls: React.FC<ControlsProps> = React.memo(function Controls({
                 </Button>
             </div>
         </div>
-    );
+  );
 });
 
 export default Controls;

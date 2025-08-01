@@ -5,6 +5,9 @@ import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 import tsParser from '@typescript-eslint/parser'
 import tsPlugin from '@typescript-eslint/eslint-plugin'
+import importPlugin from 'eslint-plugin-import'
+import reactPlugin from 'eslint-plugin-react'
+import jsxA11yPlugin from 'eslint-plugin-jsx-a11y'
 import { FlatCompat } from '@eslint/eslintrc'
 
 const compat = new FlatCompat({
@@ -28,15 +31,33 @@ export default [
       '@typescript-eslint': tsPlugin,
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
+      'import': importPlugin,
+      'react': reactPlugin,
+      'jsx-a11y': jsxA11yPlugin,
     },
     rules: {
       ...js.configs.recommended.rules,
       ...tsPlugin.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
+      // Apply Airbnb TypeScript rules using FlatCompat
+      ...compat.extends('airbnb-typescript')[0].rules,
+      // Override Airbnb rules after applying them
       'react/prop-types': 'off',
       'react/react-in-jsx-scope': 'off',
       '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
       'import/prefer-default-export': 'off',
+      // Allow omitting file extensions for TypeScript files
+      'import/extensions': 'off',
+      // Allow devDependencies in test files
+      'import/no-extraneous-dependencies': ['error', {
+        devDependencies: [
+          '**/*.test.{ts,tsx}',
+          '**/__tests__/**/*.{ts,tsx}',
+          '**/setupTests.ts',
+          '**/vite.config.*',
+          '**/cypress.config.*',
+        ],
+      }],
     },
   },
   {

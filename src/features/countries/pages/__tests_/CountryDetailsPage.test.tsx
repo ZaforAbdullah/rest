@@ -8,11 +8,11 @@ import type { Country } from '@/features/countries/types';
 
 // Fully mock react-query before imports resolve
 vi.mock('@tanstack/react-query', async (importOriginal) => {
-    const actual = await importOriginal();
-    return {
-        ...(typeof actual === 'object' && actual !== null ? actual : {}),
-        useQuery: vi.fn(),
-    };
+  const actual = await importOriginal();
+  return {
+    ...(typeof actual === 'object' && actual !== null ? actual : {}),
+    useQuery: vi.fn(),
+  };
 });
 
 // Commented out for now - not currently used in tests
@@ -45,20 +45,20 @@ vi.mock('@tanstack/react-query', async (importOriginal) => {
 // ];
 
 describe('CountryDetailsPage', () => {
-    beforeEach(() => {
-        vi.restoreAllMocks();
-    });
+  beforeEach(() => {
+    vi.restoreAllMocks();
+  });
 
-    function renderWithProviders(route: string) {
-        render(
+  function renderWithProviders(route: string) {
+    render(
             <MemoryRouter initialEntries={[route]}>
                 <Routes>
                     <Route path="/country/:code" element={<CountryDetailsPage />} />
                 </Routes>
-            </MemoryRouter>
-        );
-    }
-    /*
+            </MemoryRouter>,
+    );
+  }
+  /*
     it('renders country details with borders', async () => {
         // Force react-query's useQuery to return mock border countries
         (reactQuery.useQuery as unknown as jest.MockInstance<any, any>).mockReturnValue({
@@ -87,24 +87,24 @@ describe('CountryDetailsPage', () => {
     });
     */
 
-    it('renders error state', () => {
-        // Mock the useQuery function to return error state
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        (reactQuery.useQuery as any).mockReturnValue({
-            data: undefined,
-            isLoading: false,
-            isError: false,
-        });
-
-        vi.spyOn(useCountriesHook, 'useCountry').mockReturnValue({
-            data: undefined,
-            isLoading: false,
-            isError: true,
-            error: new Error('Country not found'),
-        } as unknown as reactQuery.UseQueryResult<Country, Error>);
-
-        renderWithProviders('/country/XYZ');
-
-        expect(screen.getByText(/Country not found/i)).toBeInTheDocument();
+  it('renders error state', () => {
+    // Mock the useQuery function to return error state
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (reactQuery.useQuery as any).mockReturnValue({
+      data: undefined,
+      isLoading: false,
+      isError: false,
     });
+
+    vi.spyOn(useCountriesHook, 'useCountry').mockReturnValue({
+      data: undefined,
+      isLoading: false,
+      isError: true,
+      error: new Error('Country not found'),
+    } as unknown as reactQuery.UseQueryResult<Country, Error>);
+
+    renderWithProviders('/country/XYZ');
+
+    expect(screen.getByText(/Country not found/i)).toBeInTheDocument();
+  });
 });

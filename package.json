@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "test": "vitest",
     "cypress:open": "cypress open --config-file tsconfig.cypress.json",
-    "cypress:run": "cypress run --config-file cypress.config.cjs",
+    "cypress": "cypress run --config-file cypress.config.cjs",
     "lint-fix": "eslint . --fix",
     "format": "prettier --write ."
   },

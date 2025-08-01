@@ -6,27 +6,27 @@ import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persist
 import AppRouter from './routes/AppRouter';
 
 const queryClient = new QueryClient({
-    defaultOptions: {
-        queries: {
-            staleTime: 1000 * 60 * 5,
-        },
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5,
     },
+  },
 });
 
 const persister = createSyncStoragePersister({
-    storage: window.localStorage,
+  storage: window.localStorage,
 });
 
 persistQueryClient({
-    queryClient,
-    persister,
-    maxAge: 1000 * 60 * 60,
+  queryClient,
+  persister,
+  maxAge: 1000 * 60 * 60,
 });
 
 export default function App(): JSX.Element {
-    return (
+  return (
         <QueryClientProvider client={queryClient}>
             <AppRouter />
         </QueryClientProvider>
-    );
+  );
 }

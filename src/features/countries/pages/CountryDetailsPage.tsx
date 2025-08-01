@@ -11,54 +11,54 @@ import type { Country } from '@/features/countries/types';
 import useDarkMode from '@/hooks/useDarkMode';
 
 function DetailRow({ label, value }: { label: string; value: React.ReactNode }) {
-    return (
+  return (
         <div className="flex flex-wrap gap-2 text-sm mb-1">
             <span className="font-semibold">{label}:</span>
             <span className="text-foreground">{value}</span>
         </div>
-    );
+  );
 }
 
 export default function CountryDetailsPage() {
-    const [darkMode] = useDarkMode();
-    const { code } = useParams<{ code: string }>();
-    const { data: country, isLoading, isError } = useCountry(code);
+  const [darkMode] = useDarkMode();
+  const { code } = useParams<{ code: string }>();
+  const { data: country, isLoading, isError } = useCountry(code);
 
-    const {
-        data: borderCountries,
-        isLoading: bordersLoading,
-    } = useQuery<Country[]>({
-        queryKey: ['borders', country?.borders],
-        queryFn: async () => {
-            if (!country?.borders?.length) return [];
-            const res = await axios.get(
-                `https://restcountries.com/v3.1/alpha?codes=${country.borders.join(',')}&fields=name,cca3`
-            );
-            return res.data;
-        },
-        enabled: !!country?.borders?.length,
-        staleTime: 1000 * 60 * 10,
-    });
+  const {
+    data: borderCountries,
+    isLoading: bordersLoading,
+  } = useQuery<Country[]>({
+    queryKey: ['borders', country?.borders],
+    queryFn: async () => {
+      if (!country?.borders?.length) return [];
+      const res = await axios.get(
+        `https://restcountries.com/v3.1/alpha?codes=${country.borders.join(',')}&fields=name,cca3`,
+      );
+      return res.data;
+    },
+    enabled: !!country?.borders?.length,
+    staleTime: 1000 * 60 * 10,
+  });
 
-    if (isLoading)
-        return <div className="text-center mt-10 text-lg">Loading country…</div>;
+  if (isLoading)
+    return <div className="text-center mt-10 text-lg">Loading country…</div>;
 
-    if (isError || !country)
-        return (
-            <div className="text-center mt-10 text-red-500">Country not found.</div>
-        );
-
-    const formattedPopulation = new Intl.NumberFormat().format(country.population);
-    const formattedLanguages = country.languages
-        ? Object.values(country.languages).join(', ')
-        : 'N/A';
-    const formattedCurrencies = country.currencies
-        ? Object.values(country.currencies)
-            .map((c) => `${c.name} (${c.symbol || ''})`)
-            .join(', ')
-        : 'N/A';
-
+  if (isError || !country)
     return (
+            <div className="text-center mt-10 text-red-500">Country not found.</div>
+    );
+
+  const formattedPopulation = new Intl.NumberFormat().format(country.population);
+  const formattedLanguages = country.languages
+    ? Object.values(country.languages).join(', ')
+    : 'N/A';
+  const formattedCurrencies = country.currencies
+    ? Object.values(country.currencies)
+      .map((c) => `${c.name} (${c.symbol || ''})`)
+      .join(', ')
+    : 'N/A';
+
+  return (
         <div className={darkMode ? 'dark' : ''}>
             <div className="min-h-screen bg-background text-foreground transition-colors duration-500">
                 <div className="max-w-7xl mx-auto px-4 py-6">
@@ -140,7 +140,7 @@ export default function CountryDetailsPage() {
                                                 ))}
                                             </div>
                                         ) : (
-                                            'None'
+                                          'None'
                                         )
                                     }
                                 />
@@ -150,5 +150,5 @@ export default function CountryDetailsPage() {
                 </div>
             </div>
         </div>
-    );
+  );
 }

@@ -6,34 +6,34 @@ import { Card, CardContent } from '@/components/ui/card';
 import type { Country } from '@/features/countries/types';
 
 interface CountryCardProps {
-    country: Country;
-    search?: string;
+  country: Country;
+  search?: string;
 }
 
 const highlightMatch = (text: string, query: string): (string | JSX.Element)[] => {
-    if (!query) return [text];
-    const regex = new RegExp(`(${query})`, 'ig');
-    return text.split(regex).map((part, i) =>
-        regex.test(part) ? (
+  if (!query) return [text];
+  const regex = new RegExp(`(${query})`, 'ig');
+  return text.split(regex).map((part, i) =>
+    regex.test(part) ? (
             <mark key={i} className="bg-yellow-200 dark:bg-yellow-600 rounded">
                 {part}
             </mark>
-        ) : (
-            part
-        )
-    );
+    ) : (
+      part
+    ),
+  );
 };
 
 const CountryCard = React.memo(function CountryCard({
-    country,
-    search = '',
+  country,
+  search = '',
 }: CountryCardProps): React.ReactElement {
-    const navigate = useNavigate();
-    const populationText = useMemo(() => country.population.toLocaleString(), [country.population]);
+  const navigate = useNavigate();
+  const populationText = useMemo(() => country.population.toLocaleString(), [country.population]);
 
-    const handleClick = () => navigate(`/country/${country.cca3}`);
+  const handleClick = () => navigate(`/country/${country.cca3}`);
 
-    return (
+  return (
         <Card
             data-testid={`country-card-${country.cca3}`}
             onClick={handleClick}
@@ -66,7 +66,7 @@ const CountryCard = React.memo(function CountryCard({
             </p>
             </CardContent>
         </Card>
-    );
+  );
 });
 
 export default CountryCard;

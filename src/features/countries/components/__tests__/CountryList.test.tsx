@@ -4,17 +4,17 @@ import CountryList from '@/features/countries/components/CountryList';
 import { MemoryRouter } from 'react-router-dom';
 
 const mockCountries = Array.from({ length: 30 }).map((_, idx) => ({
-    cca3: `C${idx}`,
-    name: { common: `Country ${idx}`, official: `Official Country ${idx}` },
-    region: 'TestRegion',
-    capital: ['Capital'],
-    flags: { svg: 'flag.svg' },
-    population: 1000 * idx,
+  cca3: `C${idx}`,
+  name: { common: `Country ${idx}`, official: `Official Country ${idx}` },
+  region: 'TestRegion',
+  capital: ['Capital'],
+  flags: { svg: 'flag.svg' },
+  population: 1000 * idx,
 }));
 
 describe('CountryList', () => {
-    it('shows skeletons when loading', () => {
-        render(
+  it('shows skeletons when loading', () => {
+    render(
             <MemoryRouter>
                 <CountryList
                     countries={[]}
@@ -23,13 +23,13 @@ describe('CountryList', () => {
                     search=""
                     region="All"
                 />
-            </MemoryRouter>
-        );
-        expect(screen.getAllByTestId('skeleton-card').length).toBeGreaterThan(0);
-    });
+            </MemoryRouter>,
+    );
+    expect(screen.getAllByTestId('skeleton-card').length).toBeGreaterThan(0);
+  });
 
-    it('renders paginated countries', () => {
-        render(
+  it('renders paginated countries', () => {
+    render(
             <MemoryRouter>
                 <CountryList
                     countries={mockCountries}
@@ -38,13 +38,13 @@ describe('CountryList', () => {
                     search=""
                     region="All"
                 />
-            </MemoryRouter>
-        );
-        expect(screen.getByText(/Country 0/)).toBeInTheDocument();
-    });
+            </MemoryRouter>,
+    );
+    expect(screen.getByText(/Country 0/)).toBeInTheDocument();
+  });
 
-    it('renders error state', () => {
-        render(
+  it('renders error state', () => {
+    render(
             <MemoryRouter>
                 <CountryList
                     countries={[]}
@@ -53,8 +53,8 @@ describe('CountryList', () => {
                     search=""
                     region="All"
                 />
-            </MemoryRouter>
-        );
-        expect(screen.getByText(/Error loading countries/i)).toBeInTheDocument();
-    });
+            </MemoryRouter>,
+    );
+    expect(screen.getByText(/Error loading countries/i)).toBeInTheDocument();
+  });
 });

@@ -13,6 +13,6 @@ const SkeletonCard: React.FC = () => {
       </div>
     </div>
   );
-}
+};
 
 export default SkeletonCard;
