@@ -1,16 +1,16 @@
 [
-    {
-        "cca3": "IND",
-        "name": {
-            "common": "India",
-            "official": "Republic of India"
-        }
-    },
-    {
-        "cca3": "MMR",
-        "name": {
-            "common": "Myanmar",
-            "official": "Republic of the Union of Myanmar"
-        }
+  {
+    "cca3": "IND",
+    "name": {
+      "common": "India",
+      "official": "Republic of India"
     }
+  },
+  {
+    "cca3": "MMR",
+    "name": {
+      "common": "Myanmar",
+      "official": "Republic of the Union of Myanmar"
+    }
+  }
 ]

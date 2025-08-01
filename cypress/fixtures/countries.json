@@ -1,47 +1,41 @@
 [
-    {
-        "cca3": "BGD",
-        "name": {
-            "common": "Bangladesh",
-            "official": "People's Republic of Bangladesh"
-        },
-        "region": "Asia",
-        "capital": [
-            "Dhaka"
-        ],
-        "flags": {
-            "svg": "https://flagcdn.com/bd.svg"
-        },
-        "population": 166303498
+  {
+    "cca3": "BGD",
+    "name": {
+      "common": "Bangladesh",
+      "official": "People's Republic of Bangladesh"
     },
-    {
-        "cca3": "IND",
-        "name": {
-            "common": "India",
-            "official": "Republic of India"
-        },
-        "region": "Asia",
-        "capital": [
-            "New Delhi"
-        ],
-        "flags": {
-            "svg": "https://flagcdn.com/in.svg"
-        },
-        "population": 1393409038
+    "region": "Asia",
+    "capital": ["Dhaka"],
+    "flags": {
+      "svg": "https://flagcdn.com/bd.svg"
     },
-    {
-        "cca3": "NPL",
-        "name": {
-            "common": "Nepal",
-            "official": "Federal Democratic Republic of Nepal"
-        },
-        "region": "Asia",
-        "capital": [
-            "Kathmandu"
-        ],
-        "flags": {
-            "svg": "https://flagcdn.com/np.svg"
-        },
-        "population": 29136808
-    }
+    "population": 166303498
+  },
+  {
+    "cca3": "IND",
+    "name": {
+      "common": "India",
+      "official": "Republic of India"
+    },
+    "region": "Asia",
+    "capital": ["New Delhi"],
+    "flags": {
+      "svg": "https://flagcdn.com/in.svg"
+    },
+    "population": 1393409038
+  },
+  {
+    "cca3": "NPL",
+    "name": {
+      "common": "Nepal",
+      "official": "Federal Democratic Republic of Nepal"
+    },
+    "region": "Asia",
+    "capital": ["Kathmandu"],
+    "flags": {
+      "svg": "https://flagcdn.com/np.svg"
+    },
+    "population": 29136808
+  }
 ]

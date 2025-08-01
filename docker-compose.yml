@@ -6,9 +6,7 @@ services:
     volumes:
       - .:/react
     ports:
-      - "5173:5173"
+      - '5173:5173'
     working_dir: /react
     tty: true
-
-
 # docker-compose up --build -d

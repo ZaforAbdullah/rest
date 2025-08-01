@@ -1,29 +1,24 @@
 {
-    "cca3": "BGD",
-    "borders": [
-        "IND",
-        "MMR"
-    ],
-    "name": {
-        "common": "Bangladesh",
-        "official": "People's Republic of Bangladesh"
-    },
-    "region": "Asia",
-    "subregion": "Southern Asia",
-    "capital": [
-        "Dhaka"
-    ],
-    "flags": {
-        "svg": "https://flagcdn.com/bd.svg"
-    },
-    "population": 166303498,
-    "languages": {
-        "ben": "Bengali"
-    },
-    "currencies": {
-        "BDT": {
-            "name": "Bangladeshi Taka",
-            "symbol": "৳"
-        }
+  "cca3": "BGD",
+  "borders": ["IND", "MMR"],
+  "name": {
+    "common": "Bangladesh",
+    "official": "People's Republic of Bangladesh"
+  },
+  "region": "Asia",
+  "subregion": "Southern Asia",
+  "capital": ["Dhaka"],
+  "flags": {
+    "svg": "https://flagcdn.com/bd.svg"
+  },
+  "population": 166303498,
+  "languages": {
+    "ben": "Bengali"
+  },
+  "currencies": {
+    "BDT": {
+      "name": "Bangladeshi Taka",
+      "symbol": "৳"
     }
+  }
 }

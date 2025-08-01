@@ -1,6 +1,6 @@
 /* src/index.css */
-@import "tailwindcss";
-@import "tw-animate-css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
 @tailwind utilities;
 
 @custom-variant dark (&:is(.dark *));
@@ -211,5 +211,7 @@ html.dark {
 }
 
 html {
-  transition: background-color 0.5s ease, color 0.5s ease;
+  transition:
+    background-color 0.5s ease,
+    color 0.5s ease;
 }

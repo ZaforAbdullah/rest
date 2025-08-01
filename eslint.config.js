@@ -8,6 +8,8 @@ import tsPlugin from '@typescript-eslint/eslint-plugin'
 import importPlugin from 'eslint-plugin-import'
 import reactPlugin from 'eslint-plugin-react'
 import jsxA11yPlugin from 'eslint-plugin-jsx-a11y'
+import prettierPlugin from 'eslint-plugin-prettier'
+import prettierConfig from 'eslint-config-prettier'
 import { FlatCompat } from '@eslint/eslintrc'
 
 const compat = new FlatCompat({
@@ -16,6 +18,8 @@ const compat = new FlatCompat({
 
 export default [
   { ignores: ['dist', 'node_modules'] },
+
+  // Main App Config
   {
     files: ['src/**/*.{ts,tsx}'],
     languageOptions: {
@@ -31,35 +35,43 @@ export default [
       '@typescript-eslint': tsPlugin,
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
-      'import': importPlugin,
-      'react': reactPlugin,
+      import: importPlugin,
+      react: reactPlugin,
       'jsx-a11y': jsxA11yPlugin,
+      prettier: prettierPlugin,
     },
     rules: {
       ...js.configs.recommended.rules,
       ...tsPlugin.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
-      // Apply Airbnb TypeScript rules using FlatCompat
       ...compat.extends('airbnb-typescript')[0].rules,
-      // Override Airbnb rules after applying them
+      ...prettierConfig.rules,
+
+      // Enforce Prettier formatting
+      'prettier/prettier': 'error',
+
+      // Rule overrides
       'react/prop-types': 'off',
       'react/react-in-jsx-scope': 'off',
       '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
       'import/prefer-default-export': 'off',
-      // Allow omitting file extensions for TypeScript files
       'import/extensions': 'off',
-      // Allow devDependencies in test files
-      'import/no-extraneous-dependencies': ['error', {
-        devDependencies: [
-          '**/*.test.{ts,tsx}',
-          '**/__tests__/**/*.{ts,tsx}',
-          '**/setupTests.ts',
-          '**/vite.config.*',
-          '**/cypress.config.*',
-        ],
-      }],
+      'import/no-extraneous-dependencies': [
+        'error',
+        {
+          devDependencies: [
+            '**/*.test.{ts,tsx}',
+            '**/__tests__/**/*.{ts,tsx}',
+            '**/setupTests.ts',
+            '**/vite.config.*',
+            '**/cypress.config.*',
+          ],
+        },
+      ],
     },
   },
+
+  // Test Files
   {
     files: ['src/**/*.test.{ts,tsx}', 'src/**/__tests__/**/*.{ts,tsx}'],
     languageOptions: {
@@ -86,16 +98,22 @@ export default [
     plugins: {
       '@typescript-eslint': tsPlugin,
       'react-hooks': reactHooks,
+      prettier: prettierPlugin,
     },
     rules: {
       ...js.configs.recommended.rules,
       ...tsPlugin.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
+      ...prettierConfig.rules,
+
+      'prettier/prettier': 'error',
       'react/react-in-jsx-scope': 'off',
       '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
       '@typescript-eslint/no-explicit-any': 'warn',
     },
   },
+
+  // Cypress Config
   {
     files: ['cypress/**/*.{ts,tsx}', 'cypress.config.ts'],
     languageOptions: {
@@ -121,10 +139,14 @@ export default [
     },
     plugins: {
       '@typescript-eslint': tsPlugin,
+      prettier: prettierPlugin,
     },
     rules: {
       ...js.configs.recommended.rules,
       ...tsPlugin.configs.recommended.rules,
+      ...prettierConfig.rules,
+
+      'prettier/prettier': 'error',
       '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
       '@typescript-eslint/no-var-requires': 'off',
     },
