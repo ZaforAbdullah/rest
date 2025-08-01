@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ master]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
   workflow_dispatch:
 
 jobs:
@@ -16,109 +16,109 @@ jobs:
         node-version: [24.x]
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Setup Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: Run ESLint
-      run: npm run lint
+      - name: Run ESLint
+        run: npm run lint
 
-    - name: Check Prettier formatting
-      run: npm run format:check
+      - name: Check Prettier formatting
+        run: npm run format:check
 
-    - name: Run unit tests
-      run: npm run test -- --coverage
+      - name: Run unit tests
+        run: npm run test -- --coverage
 
-    - name: Upload coverage to Codecov
-      if: matrix.node-version == '20.x'
-      uses: codecov/codecov-action@v3
-      with:
-        file: ./coverage/lcov.info
-        flags: unittests
-        name: codecov-umbrella
+      - name: Upload coverage to Codecov
+        if: matrix.node-version == '20.x'
+        uses: codecov/codecov-action@v3
+        with:
+          file: ./coverage/lcov.info
+          flags: unittests
+          name: codecov-umbrella
 
   build:
     runs-on: ubuntu-latest
     needs: lint-and-test
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '24.x'
-        cache: 'npm'
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24.x'
+          cache: 'npm'
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: Build application
-      run: npm run build
+      - name: Build application
+        run: npm run build
 
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: build-files
-        path: dist/
-        retention-days: 7
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-files
+          path: dist/
+          retention-days: 7
 
   e2e-tests:
     runs-on: ubuntu-latest
     needs: build
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20.x'
-        cache: 'npm'
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'npm'
 
-    - name: Install dependencies
-      run: npm install
+      - name: Install dependencies
+        run: npm install
 
-    - name: Download build artifacts
-      uses: actions/download-artifact@v4
-      with:
-        name: build-files
-        path: dist/
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-files
+          path: dist/
 
-    - name: Start application
-      run: |
-        npm run preview &
-        sleep 10
-      env:
-        CI: true
+      - name: Start application
+        run: |
+          npm run preview &
+          sleep 10
+        env:
+          CI: true
 
-    - name: Run Cypress E2E tests
-      run: npm run cypress:run
-      env:
-        CYPRESS_baseUrl: http://localhost:4173
+      - name: Run Cypress E2E tests
+        run: npm run cypress:run
+        env:
+          CYPRESS_baseUrl: http://localhost:4173
 
-    - name: Upload Cypress screenshots
-      if: failure()
-      uses: actions/upload-artifact@v4
-      with:
-        name: cypress-screenshots
-        path: cypress/screenshots/
-        retention-days: 7
+      - name: Upload Cypress screenshots
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots/
+          retention-days: 7
 
-    - name: Upload Cypress videos
-      if: failure()
-      uses: actions/upload-artifact@v4
-      with:
-        name: cypress-videos
-        path: cypress/videos/
-        retention-days: 7
+      - name: Upload Cypress videos
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-videos
+          path: cypress/videos/
+          retention-days: 7
