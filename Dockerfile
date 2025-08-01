@@ -1,4 +1,4 @@
-FROM node:lts
+FROM node:24
 
 # Install Cypress dependencies
 RUN apt-get update -y && \

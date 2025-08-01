@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { vi } from 'vitest';
 import * as reactQuery from '@tanstack/react-query';
@@ -15,33 +15,34 @@ vi.mock('@tanstack/react-query', async (importOriginal) => {
     };
 });
 
-const mockCountry: Country = {
-    cca3: 'BGD',
-    borders: ['IND'],
-    name: { common: 'Bangladesh', official: 'People\'s Republic of Bangladesh' },
-    region: 'Asia',
-    subregion: 'South Asia',
-    capital: ['Dhaka'],
-    flags: { svg: 'flag.svg' },
-    population: 1000,
-    languages: { ben: 'Bengali' },
-    currencies: { BDT: { name: 'Taka', symbol: '৳' } },
-};
+// Commented out for now - not currently used in tests
+// const _mockCountry: Country = {
+//     cca3: 'BGD',
+//     borders: ['IND'],
+//     name: { common: 'Bangladesh', official: 'People\'s Republic of Bangladesh' },
+//     region: 'Asia',
+//     subregion: 'South Asia',
+//     capital: ['Dhaka'],
+//     flags: { svg: 'flag.svg' },
+//     population: 1000,
+//     languages: { ben: 'Bengali' },
+//     currencies: { BDT: { name: 'Taka', symbol: '৳' } },
+// };
 
-const mockBorderCountries: Country[] = [
-    {
-        cca3: 'IND',
-        name: { common: 'India', official: 'Republic of India' },
-        region: 'Asia',
-        subregion: 'South Asia',
-        capital: ['New Delhi'],
-        flags: { svg: 'india-flag.svg' },
-        population: 1380000000,
-        languages: { hin: 'Hindi' },
-        currencies: { INR: { name: 'Rupee', symbol: '₹' } },
-        borders: [],
-    },
-];
+// const _mockBorderCountries: Country[] = [
+//     {
+//         cca3: 'IND',
+//         name: { common: 'India', official: 'Republic of India' },
+//         region: 'Asia',
+//         subregion: 'South Asia',
+//         capital: ['New Delhi'],
+//         flags: { svg: 'india-flag.svg' },
+//         population: 1380000000,
+//         languages: { hin: 'Hindi' },
+//         currencies: { INR: { name: 'Rupee', symbol: '₹' } },
+//         borders: [],
+//     },
+// ];
 
 describe('CountryDetailsPage', () => {
     beforeEach(() => {
@@ -87,8 +88,10 @@ describe('CountryDetailsPage', () => {
     */
 
     it('renders error state', () => {
-        (reactQuery.useQuery as unknown as jest.MockInstance<any, any>).mockReturnValue({
-            data: [],
+        // Mock the useQuery function to return error state
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (reactQuery.useQuery as any).mockReturnValue({
+            data: undefined,
             isLoading: false,
             isError: false,
         });

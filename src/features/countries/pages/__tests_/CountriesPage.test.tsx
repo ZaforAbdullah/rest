@@ -1,5 +1,6 @@
 // src/features/countries/pages/__tests__/CountriesPage.test.tsx
 
+import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 import CountriesPage from '../CountriesPage';

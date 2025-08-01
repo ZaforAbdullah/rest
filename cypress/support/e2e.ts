@@ -1,5 +1,6 @@
 // cypress/support/e2e.ts
 
+/// <reference types="cypress" />
 // Import commands.js using ES2015 syntax:
 // import './commands';
 
@@ -11,7 +12,8 @@ beforeEach(() => {
 });
 
 // Handle uncaught exceptions (optional, depending on your needs)
-Cypress.on('uncaught:exception', (err) => {
+// @ts-expect-error - Cypress namespace used as value for event handling
+Cypress.on('uncaught:exception', () => {
     // returning false here prevents Cypress from failing the test
     return false;
 });
