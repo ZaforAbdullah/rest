@@ -17,7 +17,8 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  lint-and-test:
+  lint-and-format:
+    name: Lint and Format
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -38,6 +39,23 @@ jobs:
       - name: Check Prettier formatting
         run: npm run format:check
 
+  unit-test:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    needs: lint-and-format
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24.x'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
       - name: Run unit tests
         run: npm run test
 
@@ -48,9 +66,10 @@ jobs:
           flags: unittests
           name: codecov-umbrella
 
-  build:
+  e2e-test:
+    name: E2E Tests (Cypress)
     runs-on: ubuntu-latest
-    needs: lint-and-test
+    needs: unit-test
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -67,48 +86,19 @@ jobs:
       - name: Build application
         run: npm run build
 
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-files
-          path: dist/
-          retention-days: 7
-
-  e2e-tests:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '24.x'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Download build artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: build-files
-          path: dist/
-
-      - name: Start application
+      - name: Start application preview
         run: |
           npm run preview &
           sleep 10
         env:
           CI: true
 
-      - name: Run Cypress E2E tests
+      - name: Run Cypress tests
         run: npm run cypress
         env:
           CYPRESS_baseUrl: http://localhost:4173/#
 
-      - name: Upload Cypress screenshots
+      - name: Upload Cypress screenshots (on failure)
         if: failure()
         uses: actions/upload-artifact@v4
         with:
@@ -116,7 +106,7 @@ jobs:
           path: cypress/screenshots/
           retention-days: 7
 
-      - name: Upload Cypress videos
+      - name: Upload Cypress videos (on failure)
         if: failure()
         uses: actions/upload-artifact@v4
         with:
@@ -124,10 +114,11 @@ jobs:
           path: cypress/videos/
           retention-days: 7
 
-  build-and-deploy:
+  deploy:
+    name: Build and Deploy to GitHub Pages
     if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
-    needs: e2e-tests
+    needs: e2e-test
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -150,20 +141,18 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run tests
-        run: npm run test -- --run
-
-      - name: Build application
+      - name: Build for GitHub Pages
         run: npm run build
         env:
           VITE_BASE_PATH: /rest/
+          VITE_ROUTER_MODE: hash
 
-      - name: Setup Pages
+      - name: Setup GitHub Pages
         uses: actions/configure-pages@v4
         with:
           enablement: true
 
-      - name: Upload to GitHub Pages
+      - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist/
