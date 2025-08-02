@@ -104,7 +104,7 @@ jobs:
         with:
           name: cypress-screenshots
           path: cypress/screenshots/
-          retention-days: 7
+          retention-days: 1
 
       - name: Upload Cypress videos (on failure)
         if: failure()
@@ -112,7 +112,7 @@ jobs:
         with:
           name: cypress-videos
           path: cypress/videos/
-          retention-days: 7
+          retention-days: 1
 
   deploy:
     name: Build and Deploy to GitHub Pages
