@@ -1,4 +1,3 @@
-// cypress/e2e/countryDetails.cy.ts
 /// <reference types="cypress" />
 
 describe('Country Details Page', () => {

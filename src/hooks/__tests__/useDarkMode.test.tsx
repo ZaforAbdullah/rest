@@ -16,4 +16,17 @@ describe('useDarkMode', () => {
     expect(result.current[0]).toBe(true)
     expect(localStorage.getItem('darkMode')).toBe('true')
   })
+
+  it('initializes as false if localStorage is set to false', () => {
+    localStorage.setItem('darkMode', 'false')
+    const { result } = renderHook(() => useDarkMode())
+    const [darkMode] = result.current
+    expect(darkMode).toBe(false)
+  })
+
+  it('defaults to false when localStorage key is missing', () => {
+    const { result } = renderHook(() => useDarkMode())
+    const [darkMode] = result.current
+    expect(darkMode).toBe(false)
+  })
 })

@@ -1,4 +1,3 @@
-// cypress/e2e/countries.cy.ts
 /// <reference types="cypress" />
 
 describe('Countries Page', () => {
@@ -21,7 +20,7 @@ describe('Countries Page', () => {
   it('should navigate to country details page', () => {
     cy.wait('@getCountries')
     cy.contains('Bangladesh').click()
-    cy.url().should('include', '/country/BGD') // Confirm actual route
+    cy.url().should('include', '/country/BGD')
     cy.contains("People's Republic of Bangladesh").should('exist')
   })
 
