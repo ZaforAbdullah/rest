@@ -3,10 +3,18 @@ import Pagination from '@/features/countries/components/Pagination'
 import { vi } from 'vitest'
 
 describe('Pagination', () => {
-  it('disables Prev on first page and Next on last page', () => {
+  it('disables Prev on first page', () => {
     const setPage = vi.fn()
     render(<Pagination page={1} totalPages={3} onPageChange={setPage} />)
     expect(screen.getByText(/Prev/i)).toBeDisabled()
+    expect(screen.getByText(/Next/i)).not.toBeDisabled()
+  })
+
+  it('disables Next on last page', () => {
+    const setPage = vi.fn()
+    render(<Pagination page={3} totalPages={3} onPageChange={setPage} />)
+    expect(screen.getByText(/Prev/i)).not.toBeDisabled()
+    expect(screen.getByText(/Next/i)).toBeDisabled()
   })
 
   it('calls onPageChange on Next/Prev button click', () => {

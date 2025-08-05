@@ -23,5 +23,9 @@ describe('CountryCard', () => {
     render(<CountryCard country={country} />, { wrapper: MemoryRouter })
     fireEvent.click(screen.getByRole('button'))
     // We assume navigate works via react-router here.
+    //TODO: Check if additional navigation logic is needed
+    expect(screen.getByText(/Bangladesh/i)).toBeInTheDocument()
+    expect(screen.getByText(/Asia/i)).toBeInTheDocument()
+    expect(screen.getByAltText(/Flag of/i)).toBeInTheDocument()
   })
 })
