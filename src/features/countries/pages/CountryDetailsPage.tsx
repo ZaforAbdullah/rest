@@ -54,20 +54,17 @@ export default function CountryDetailsPage() {
     <div className={darkMode ? 'dark' : ''}>
       <div className="min-h-screen bg-background text-foreground transition-colors duration-500">
         <div className="max-w-7xl mx-auto px-4 py-6">
-          <Button
-            variant="secondary"
-            size="icon"
-            className="mb-6"
-            aria-label="Go back"
-            data-testid="back-button"
-          >
-            <Link
-              to="/"
-              style={{ display: 'flex', alignItems: 'center', width: '100%', height: '100%' }}
+          <Link to="/" className="inline-block mb-6">
+            <Button
+              variant="secondary"
+              size="icon"
+              className="flex items-center justify-center"
+              aria-label="Go back"
+              data-testid="back-button"
             >
               <ArrowLeftIcon className="size-5" />
-            </Link>
-          </Button>
+            </Button>
+          </Link>
 
           <motion.div
             key={code}
