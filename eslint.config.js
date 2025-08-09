@@ -69,6 +69,24 @@ export default [
         },
       ],
     },
+    settings: {
+      'import/resolver': {
+        node: {
+          extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        },
+        typescript: {
+          project: './tsconfig.app.json',
+        },
+      },
+    },
+  },
+
+  // Rule override for App.tsx
+  {
+    files: ['src/App.tsx'],
+    rules: {
+      'import/no-extraneous-dependencies': 'off',
+    },
   },
 
   // Test Files
