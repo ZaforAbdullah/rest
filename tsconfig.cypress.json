@@ -1,12 +1,18 @@
-// tsconfig.cypress.json
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    /* Override for Cypress/Webpack */
+    "target": "ES2020",
+    "lib": ["ES2020"],
+    "module": "esnext",
     "moduleResolution": "node",
-    "module": "CommonJS",
+
+    /* Test environment types */
     "types": ["cypress", "node"],
-    "target": "ES2020", // or "ESNext" if preferred
-    "strict": true
+
+    /* Test files often have unused vars */
+    "noUnusedLocals": false,
+    "noUnusedParameters": false
   },
-  "include": ["cypress", "cypress.config.ts"]
+  "include": ["cypress/**/*.ts", "cypress/**/*.tsx", "cypress.config.ts"]
 }
