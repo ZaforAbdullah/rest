@@ -8,10 +8,4 @@ describe('App', () => {
 
     expect(await screen.findByText(/Where in the world\?/i)).toBeInTheDocument()
   })
-
-  // it('renders 404 page on unknown route', () => {
-  //     render(React.createElement(App));
-  //
-  //     expect(screen.getByText(/Page not found/i)).toBeInTheDocument();
-  // });
 })
