@@ -84,7 +84,9 @@ export default function CountryDetailsPage() {
             </div>
 
             <div className="flex-1">
-              <h1 className="text-3xl font-bold mb-6">{country.name.official}</h1>
+              <h1 className="text-xl sm:text-3xl md:text-2xl font-bold mb-4 sm:mb-6">
+                {country.name.official}
+              </h1>
 
               <div className="space-y-1 text-sm">
                 <DetailRow label="Common Name" value={country.name.common} />
