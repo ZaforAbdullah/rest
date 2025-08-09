@@ -15,4 +15,10 @@ module.exports = defineConfig({
       openMode: 0,
     },
   },
+
+  reporter: 'junit',
+  reporterOptions: {
+    mochaFile: 'results/cypress-[hash].xml', // each run gets unique file
+    toConsole: false, // don't spam XML in console
+  },
 })
