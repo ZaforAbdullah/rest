@@ -156,11 +156,15 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Load environment variables
+        run: |
+          if [ -f .env ]; then
+            export $(cat .env | grep -v '^#' | xargs)
+            echo "VITE_BASE_PATH=$VITE_BASE_PATH" >> $GITHUB_ENV
+          fi
+
       - name: Build for GitHub Pages
         run: npm run build
-        env:
-          VITE_BASE_PATH: /rest/
-          VITE_ROUTER_MODE: hash
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v4
