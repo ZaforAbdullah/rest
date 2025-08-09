@@ -110,10 +110,9 @@ export default function CountryDetailsPage() {
                             to={`/country/${border.cca3}`}
                             key={border.cca3}
                             data-testid={`border-country-${border.cca3}`}
+                            className="px-3 rounded-full bg-muted hover:bg-muted/80 text-sm font-medium transition-colors"
                           >
-                            <Button variant="outline" size="sm" className="text-xs">
-                              {border.name.common}
-                            </Button>
+                            {border.name.common}
                           </Link>
                         ))}
                       </div>

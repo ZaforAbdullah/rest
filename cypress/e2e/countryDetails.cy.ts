@@ -24,12 +24,13 @@ describe('Country Details Page', () => {
   it('should handle missing borders gracefully', () => {
     cy.get('[data-testid="border-countries"]', { timeout: 10000 })
       .should('exist')
-      .invoke('text')
-      .then((text) => {
-        if (text === 'None') {
-          cy.log('No border countries, displayed correctly as "None".')
+      .then(($container) => {
+        const links = $container.find('a[data-testid^="border-country-"]')
+        if (links.length === 0) {
+          cy.log('No border countries — container is empty as expected.')
+          expect($container).to.be.empty
         } else {
-          cy.get('[data-testid="border-countries"] button').should('exist')
+          cy.wrap(links).should('have.length.greaterThan', 0)
         }
       })
   })
