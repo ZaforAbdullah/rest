@@ -3,14 +3,12 @@ import { Suspense, lazy } from 'react'
 import type { ReactElement } from 'react'
 import { HashRouter, Routes, Route } from 'react-router-dom' // <-- change here
 import CountriesPage from '../features/countries/pages/CountriesPage'
-import ScrollToTop from '../components/ui/ScrollToTop'
 
 const CountryDetailsPage = lazy(() => import('../features/countries/pages/CountryDetailsPage'))
 
 export default function AppRouter(): ReactElement {
   return (
     <HashRouter>
-      <ScrollToTop />
       <Suspense fallback={<div className="text-center py-20">Loading page…</div>}>
         <Routes>
           <Route path="/" element={<CountriesPage />} />
