@@ -9,6 +9,7 @@ import axios from 'axios'
 import { useCountry } from '@/features/countries/hooks/useCountries'
 import type { Country } from '@/features/countries/types'
 import useDarkMode from '@/hooks/useDarkMode'
+import LoadingSpinner from '@/components/ui/LoadingSpinner'
 
 function DetailRow({ label, value }: { label: string; value: React.ReactNode }) {
   return (
@@ -37,7 +38,7 @@ export default function CountryDetailsPage() {
     staleTime: 1000 * 60 * 10,
   })
 
-  if (isLoading) return <div className="text-center mt-10 text-lg">Loading country…</div>
+  if (isLoading) return <LoadingSpinner />
 
   if (isError || !country)
     return <div className="text-center mt-10 text-red-500">Country not found.</div>
