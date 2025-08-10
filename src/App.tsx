@@ -2,7 +2,7 @@ import type { JSX } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { persistQueryClient } from '@tanstack/react-query-persist-client'
 import { createAsyncStoragePersister } from '@tanstack/query-async-storage-persister'
-import AppRouter from './routes/AppRouter'
+import AppRouter from '@/routes/AppRouter'
 
 const queryClient = new QueryClient({
   defaultOptions: {
