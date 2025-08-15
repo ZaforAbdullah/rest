@@ -5,28 +5,25 @@ import { Button } from '@/components/ui/button'
 
 interface ControlsProps {
   search: string
-  onSearchChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  setSearch: (value: string) => void
   region: string
-  onRegionChange: (e: React.ChangeEvent<HTMLSelectElement>) => void
+  setRegion: (value: string) => void
   regions: string[]
   darkMode: boolean
   toggleDarkMode: () => void
+  clearAll: () => void
 }
 
 const Controls: React.FC<ControlsProps> = React.memo(function Controls({
   search,
-  onSearchChange,
+  setSearch,
   region,
-  onRegionChange,
+  setRegion,
   regions,
   darkMode,
   toggleDarkMode,
+  clearAll,
 }) {
-  const handleClear = () => {
-    onSearchChange({ target: { value: '' } } as React.ChangeEvent<HTMLInputElement>)
-    onRegionChange({ target: { value: 'All' } } as React.ChangeEvent<HTMLSelectElement>)
-  }
-
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="flex items-center justify-between gap-4 pt-6 pb-4 flex-nowrap">
@@ -52,13 +49,13 @@ const Controls: React.FC<ControlsProps> = React.memo(function Controls({
           aria-label="Search countries by name"
           placeholder="Search by country name..."
           value={search}
-          onChange={onSearchChange}
+          onChange={(e) => setSearch(e.target.value)}
           className="w-full md:w-60 px-4 py-2 border rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white transition"
         />
         <select
           aria-label="Filter by region"
           value={region}
-          onChange={onRegionChange}
+          onChange={(e) => setRegion(e.target.value)}
           className="w-full md:w-48 px-4 py-2 border rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white transition"
         >
           {regions.map((r) => (
@@ -67,7 +64,7 @@ const Controls: React.FC<ControlsProps> = React.memo(function Controls({
             </option>
           ))}
         </select>
-        <Button variant="outline" size="sm" onClick={handleClear} className="md:ml-4">
+        <Button variant="outline" size="sm" onClick={clearAll} className="md:ml-4">
           <FaTimes className="mr-2" /> Clear Filters
         </Button>
       </div>

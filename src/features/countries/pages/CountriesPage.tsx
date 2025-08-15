@@ -17,14 +17,10 @@ export default function CountriesPage(): JSX.Element {
     return ['All', ...unique]
   }, [countries])
 
-  const handleSearchChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value),
-    []
-  )
-  const handleRegionChange = useCallback(
-    (e: React.ChangeEvent<HTMLSelectElement>) => setRegion(e.target.value),
-    []
-  )
+  const clearAll = useCallback(() => {
+    setSearch('')
+    setRegion('All')
+  }, [])
   const toggleDarkMode = useCallback(() => setDarkMode((prev) => !prev), [setDarkMode])
 
   return (
@@ -33,12 +29,13 @@ export default function CountriesPage(): JSX.Element {
         <div className="max-w-7xl mx-auto px-4 sm:px-8">
           <Controls
             search={search}
-            onSearchChange={handleSearchChange}
+            setSearch={setSearch}
             region={region}
-            onRegionChange={handleRegionChange}
+            setRegion={setRegion}
             regions={regions}
             darkMode={darkMode}
             toggleDarkMode={toggleDarkMode}
+            clearAll={clearAll}
           />
           <CountryList
             search={search}
