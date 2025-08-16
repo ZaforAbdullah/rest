@@ -6,12 +6,13 @@ describe('Controls Component', () => {
   const setup = (overrides = {}) => {
     const props = {
       search: 'ban',
-      onSearchChange: vi.fn(),
+      setSearch: vi.fn(),
       region: 'Asia',
-      onRegionChange: vi.fn(),
+      setRegion: vi.fn(),
       regions: ['All', 'Asia', 'Europe'],
       darkMode: false,
       toggleDarkMode: vi.fn(),
+      clearAll: vi.fn(),
       ...overrides,
     }
 
@@ -32,11 +33,10 @@ describe('Controls Component', () => {
     expect(toggleDarkMode).toHaveBeenCalled()
   })
 
-  it('calls onSearchChange and onRegionChange when clear filters clicked', () => {
-    const { onSearchChange, onRegionChange } = setup()
+  it('calls clearAll when clear filters clicked', () => {
+    const { clearAll } = setup()
     const clearButton = screen.getByRole('button', { name: /clear filters/i })
     fireEvent.click(clearButton)
-    expect(onSearchChange).toHaveBeenCalled()
-    expect(onRegionChange).toHaveBeenCalled()
+    expect(clearAll).toHaveBeenCalled()
   })
 })
