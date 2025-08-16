@@ -1,4 +1,3 @@
-// src/features/countries/components/CountryList.tsx
 import { useMemo, useState } from 'react'
 import CountryCard from '@/features/countries/components/CountryCard'
 import Pagination from '@/features/countries/components/Pagination'
@@ -26,7 +25,7 @@ export default function CountryList({
   const filteredData = useMemo(() => {
     return countries.filter((country) => {
       const matchRegion = region === 'All' || country.region === region
-      const matchSearch = country.name.official.toLowerCase().includes(search.toLowerCase())
+      const matchSearch = country.name.official.toLowerCase().includes(search.trim().toLowerCase())
       return matchRegion && matchSearch
     })
   }, [countries, search, region])
