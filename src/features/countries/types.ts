@@ -1,4 +1,3 @@
-// src/features/countries/types.ts
 export interface Country {
   name: {
     common: string

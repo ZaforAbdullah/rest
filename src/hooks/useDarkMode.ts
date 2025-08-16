@@ -1,4 +1,3 @@
-// src/hooks/useDarkMode.ts
 import React, { useState, useEffect } from 'react'
 
 export default function useDarkMode(): [boolean, React.Dispatch<React.SetStateAction<boolean>>] {

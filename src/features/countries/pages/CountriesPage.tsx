@@ -1,6 +1,5 @@
-// src/pages/CountriesPage.tsx
 import type { JSX } from 'react'
-import React, { useState, useMemo, useCallback } from 'react'
+import { useState, useMemo, useCallback } from 'react'
 import useDarkMode from '@/hooks/useDarkMode'
 import { useCountries } from '@/features/countries/hooks/useCountries'
 import Controls from '@/features/countries/components/Controls'
