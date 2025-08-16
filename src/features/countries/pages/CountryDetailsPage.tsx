@@ -1,42 +1,26 @@
-// src/pages/CountryDetailsPage.tsx
 import React from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { ArrowLeftIcon } from '@radix-ui/react-icons'
-import { useQuery } from '@tanstack/react-query'
-import axios from 'axios'
-import { useCountry } from '@/features/countries/hooks/useCountries'
-import type { Country } from '@/features/countries/types'
+import { useCountry, useBorderCountries } from '@/features/countries/hooks/useCountries'
 import useDarkMode from '@/hooks/useDarkMode'
 import LoadingSpinner from '@/components/ui/LoadingSpinner'
 
-function DetailRow({ label, value }: { label: string; value: React.ReactNode }) {
+const DetailRow = React.memo(({ label, value }: { label: string; value: React.ReactNode }) => {
   return (
     <div className="flex flex-wrap gap-2 text-sm mb-1">
       <span className="font-semibold">{label}:</span>
       <span className="text-foreground">{value}</span>
     </div>
   )
-}
+})
 
 export default function CountryDetailsPage() {
   const [darkMode] = useDarkMode()
   const { code } = useParams<{ code: string }>()
   const { data: country, isLoading, isError } = useCountry(code)
-
-  const { data: borderCountries, isLoading: bordersLoading } = useQuery<Country[]>({
-    queryKey: ['borders', country?.borders],
-    queryFn: async () => {
-      if (!country?.borders?.length) return []
-      const res = await axios.get(
-        `https://restcountries.com/v3.1/alpha?codes=${country.borders.join(',')}&fields=name,cca3`
-      )
-      return res.data
-    },
-    enabled: !!country?.borders?.length,
-    staleTime: 1000 * 60 * 10,
-  })
+  const { data: borderCountries, isLoading: bordersLoading } = useBorderCountries(country?.borders)
 
   if (isLoading) return <LoadingSpinner />
 

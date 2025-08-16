@@ -1,4 +1,3 @@
-// src/features/countries/api.ts
 import axios from 'axios'
 import type { Country } from '@/features/countries/types'
 
@@ -12,4 +11,12 @@ export const fetchCountries = async (): Promise<Country[]> => {
 export const fetchCountryByCode = async (code: string): Promise<Country> => {
   const response = await axios.get(`https://restcountries.com/v3.1/alpha/${code}`)
   return response.data[0]
+}
+
+export const fetchBorderCountries = async (borders: string[]): Promise<Country[]> => {
+  if (!borders.length) return []
+  const response = await axios.get(
+    `https://restcountries.com/v3.1/alpha?codes=${borders.join(',')}&fields=name,cca3`
+  )
+  return response.data
 }
